@@ -7,7 +7,7 @@ namespace TSGameDev.Controls.PlayerStates
 {
     public class PlayerStateWalking : PlayerState
     {
-        public PlayerStateWalking(Player player) : base(player) { SetWalking(); }
+        public PlayerStateWalking(Player player) : base(player) { }
 
         public override void MoveTo()
         {
@@ -20,16 +20,9 @@ namespace TSGameDev.Controls.PlayerStates
         public override void Update()
         {
             CheckDestination();
-        }
-
-        private async void SetWalking()
-        {
-            while(anim.GetFloat(player.animSpeed) < 1)
-            {
-                float lerpSpeed = Mathf.Lerp(0, 1, 0.1f);
-                anim.SetFloat(player.animSpeed, lerpSpeed);
-            }
-            await Task.Yield();
+            
+            if(anim.GetFloat(player.animSpeed) < 1)
+                anim.SetFloat(player.animSpeed, 1, 0.05f, 0.1f);
         }
 
         private void CheckDestination()

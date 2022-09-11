@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -59,7 +60,7 @@ namespace TSGameDev.Controls.PlayerStates
                     agent.ResetPath();
 
                 agent.SetDestination(hit.point);
-                player.gameObject.transform.LookAt(hit.point);
+                player.transform.LookAt(hit.point);
             }
         }
     }

@@ -4,7 +4,7 @@ namespace TSGameDev.Controls.PlayerStates
 {
     public class PlayerStateIdle : PlayerState
     {
-        public PlayerStateIdle(Player player) : base(player) { SetupIdle(); }
+        public PlayerStateIdle(Player player) : base(player) { }
 
         public override void MoveTo()
         {
@@ -16,12 +16,10 @@ namespace TSGameDev.Controls.PlayerStates
                 StateTransition(PlayerStates.Walking, PlayerStates.Idle);
         }
 
-        private void SetupIdle()
+        public override void Update()
         {
-            if (previousStateCache == PlayerStates.Walking)
-                anim.SetFloat(player.animSpeed, Mathf.Lerp(1, 0, 1));
-            else
-                anim.SetFloat(player.animSpeed, Mathf.Lerp(2, 0, 1));
+            if (anim.GetFloat(player.animSpeed) > Mathf.Epsilon)
+                anim.SetFloat(player.animSpeed, 0, 0.1f, 0.1f);
         }
     }
 }
