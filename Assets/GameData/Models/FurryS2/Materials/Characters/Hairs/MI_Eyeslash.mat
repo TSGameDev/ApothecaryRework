@@ -31,23 +31,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _AlphaMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _BC:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseColor:
         m_Texture: {fileID: 2800000, guid: 0110b74e3c4539945854250b32240679, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CubeMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,10 +63,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EyePOMmask1:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _FlowMap:
         m_Texture: {fileID: 2800000, guid: 5ceecae1a568bf14fb74d0fa22c27968, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -95,10 +79,6 @@ Material:
         m_Texture: {fileID: 2800000, guid: 62ce24ddd913a064cbab57b67a50aa2a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Mask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -109,14 +89,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
         m_Texture: {fileID: 2800000, guid: dfeb1ce67808dcd4cb71e8ed64a757b1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Normal:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 8f0069172d360474185c49544e625516, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
@@ -133,10 +105,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Root:
         m_Texture: {fileID: 2800000, guid: ac8c299496c225249b7444db68c052b3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Roughness:
-        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularTex:
@@ -158,10 +126,6 @@ Material:
     - _AlphaCutoffEnable: 1
     - _AlphaDstBlend: 10
     - _AlphaSrcBlend: 1
-    - _BlendColorPower2: 0
-    - _BlendColorPower3: 0
-    - _BlendColorPower4: 0
-    - _BlendColorPower5: 0
     - _BlendMode: 0
     - _Brighness: 1
     - _Brightness: 0.2
@@ -169,28 +133,19 @@ Material:
     - _Cull: 0
     - _CullMode: 2
     - _CullModeForward: 2
-    - _CurvFix: 1
-    - _CurvatureU1: 0
-    - _CurvatureV1: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Distortion: 0
     - _DitherBoost: 0.55
     - _DitherBoosts: 2.4
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
     - _Emiss: 0.3
-    - _EmissivePower1: 0
-    - _EmissivePower2: 0
-    - _EmissivePower3: 0
-    - _EmissivePower4: 0
     - _EnableFogOnTransparent: 1
     - _Gloss: 0.901
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _IrisBrightnessPower1: 1
     - _Metallic: 0
     - _MetallicBoost: 0
     - _MetallicValue: 1
@@ -209,7 +164,6 @@ Material:
     - _RoughnessBoost: 0.25
     - _RoughnessRoot: 0.06
     - _RoughnessTip: 0.13
-    - _Scale1: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularIntensity: 1
@@ -247,25 +201,15 @@ Material:
     - _isDyed: 0
     - _useFlowMapTexture: 0
     m_Colors:
-    - _BlendColor01: {r: 1, g: 1, b: 1, a: 0}
-    - _BlendColor02: {r: 1, g: 1, b: 1, a: 0}
-    - _BlendColor03: {r: 1, g: 1, b: 1, a: 0}
-    - _BlendColor04: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 0.3018868, g: 0.22926308, b: 0.22926308, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _DyedColor: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor1: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissiveColor2: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissiveColor3: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissiveColor4: {r: 0, g: 0, b: 0, a: 0}
     - _FlowTangent: {r: 1, g: 1, b: 0, a: 0.003921569}
     - _RootColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ShadowColor: {r: 0, g: 0, b: 0, a: 0}
     - _TangentA: {r: 0, g: 0.23670661, b: 0.8679245, a: 0.003921569}
     - _TangentB: {r: 0.4374777, g: 0.62379295, b: 0.8207547, a: 0.003921569}
     - _TangentC: {r: 0, g: 0.1543091, b: 0.5568628, a: 0.003921569}
     - _TangentD: {r: 1, g: 0.7653513, b: 0, a: 0.003921569}
     - _TipColor: {r: 0, g: 0, b: 0, a: 1}
-    - _VTInfoBlock: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -37,6 +37,15 @@ namespace TSGameDev.Controls
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShiftHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c5f351b-123b-4ad4-99b3-1703f801472c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ namespace TSGameDev.Controls
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseRightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86433340-2056-4d4c-8bef-79b3a3091a64"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShiftHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -87,6 +107,7 @@ namespace TSGameDev.Controls
             // Game
             m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
             m_Game_MouseRightClick = m_Game.FindAction("MouseRightClick", throwIfNotFound: true);
+            m_Game_ShiftHold = m_Game.FindAction("ShiftHold", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -150,11 +171,13 @@ namespace TSGameDev.Controls
         private readonly InputActionMap m_Game;
         private IGameActions m_GameActionsCallbackInterface;
         private readonly InputAction m_Game_MouseRightClick;
+        private readonly InputAction m_Game_ShiftHold;
         public struct GameActions
         {
             private @PlayerControls m_Wrapper;
             public GameActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @MouseRightClick => m_Wrapper.m_Game_MouseRightClick;
+            public InputAction @ShiftHold => m_Wrapper.m_Game_ShiftHold;
             public InputActionMap Get() { return m_Wrapper.m_Game; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -167,6 +190,9 @@ namespace TSGameDev.Controls
                     @MouseRightClick.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseRightClick;
                     @MouseRightClick.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseRightClick;
                     @MouseRightClick.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMouseRightClick;
+                    @ShiftHold.started -= m_Wrapper.m_GameActionsCallbackInterface.OnShiftHold;
+                    @ShiftHold.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnShiftHold;
+                    @ShiftHold.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnShiftHold;
                 }
                 m_Wrapper.m_GameActionsCallbackInterface = instance;
                 if (instance != null)
@@ -174,6 +200,9 @@ namespace TSGameDev.Controls
                     @MouseRightClick.started += instance.OnMouseRightClick;
                     @MouseRightClick.performed += instance.OnMouseRightClick;
                     @MouseRightClick.canceled += instance.OnMouseRightClick;
+                    @ShiftHold.started += instance.OnShiftHold;
+                    @ShiftHold.performed += instance.OnShiftHold;
+                    @ShiftHold.canceled += instance.OnShiftHold;
                 }
             }
         }
@@ -214,6 +243,7 @@ namespace TSGameDev.Controls
         public interface IGameActions
         {
             void OnMouseRightClick(InputAction.CallbackContext context);
+            void OnShiftHold(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

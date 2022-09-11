@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_Teeth
-  m_Shader: {fileID: 4800000, guid: 34e22a54801ad5546bc8b3e0083d5b4e, type: 3}
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _NORMALMAP
-  - _SPECGLOSSMAP
+  m_Shader: {fileID: 4800000, guid: 6daffffff89329845bf02b35e9230ece, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ADD_PRECOMPUTED_VELOCITY
+  - _ALPHATEST_ON
   - _METALLICGLOSSMAP
+  - _NORMALMAP
+  - _SPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -31,6 +31,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 2c58f024b9f047c4987bb15f1c83075f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _AlphaMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BC:
         m_Texture: {fileID: 2800000, guid: 0ebca5341a2a6564a8011d6f773de5bf, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -41,6 +45,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: f178484fe6cac8747b19b21b96e25762, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -71,6 +79,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EyePOMmask1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HairAlpha:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 0ebca5341a2a6564a8011d6f773de5bf, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -87,8 +103,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6b108b653d7bfc141b5fbf9764ea170b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal:
         m_Texture: {fileID: 2800000, guid: f178484fe6cac8747b19b21b96e25762, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 8f0069172d360474185c49544e625516, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -162,20 +186,35 @@ Material:
     - _BlendColorPower02: 0
     - _BlendColorPower03: 0
     - _BlendColorPower04: 0
+    - _BlendColorPower2: 0
+    - _BlendColorPower3: 0
+    - _BlendColorPower4: 0
+    - _BlendColorPower5: 0
     - _BlendMode: 0
     - _BlendTexture01: 0
     - _BlendTexture02: 0
     - _BlendTexture03: 0
     - _BlendTexture04: 0
     - _BlendTextureMode: 0
+    - _Brighness: 0.2
     - _BumpScale: 1
     - _ColorPow: 0
     - _CullMode: 2
     - _CullModeForward: 2
+    - _CurvFix: 1
+    - _CurvatureU1: 0
+    - _CurvatureV1: 0
     - _Cutoff: 0.5
+    - _DMBlendColorPower01: 0
+    - _DMBlendColorPower02: 0
+    - _DMBlendColorPower03: 0
+    - _DMBlendColorPower04: 0
+    - _DarkMode: 0
     - _DetailNormalMapScale: 1
     - _DirtBoots: 0
     - _DirtRoughness_Power: 0
+    - _Distortion: 0
+    - _DitherBoost: 45
     - _DitherBoosts: 1
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 2
@@ -185,6 +224,10 @@ Material:
     - _EmissiveBoots4: 0
     - _EmissiveBoots5: 0
     - _EmissivePannerTilling1: 1
+    - _EmissivePower1: 0
+    - _EmissivePower2: 0
+    - _EmissivePower3: 0
+    - _EmissivePower4: 0
     - _Emissivepowerboost1: 100
     - _EnableFogOnTransparent: 1
     - _FreaklesColorPower: 0
@@ -194,26 +237,37 @@ Material:
     - _HairCapLongColorPower: 0
     - _HairCapRoughness: 0.6
     - _HairCapShortColorPower: 0
+    - _IrisBrightnessPower1: 1
     - _IsDoubleSide: 0
     - _LipNailColorPower: 0
     - _LipsNailRoughnessBoost: 0.75
     - _Metallic: 0
+    - _MetallicBoost: 0.7
     - _MetallicBoots01: 1
     - _MetallicBoots02: 1
     - _MetallicBoots03: 1
     - _MetallicBoots04: 1
+    - _MipBias: -1
     - _Mode: 0
+    - _NoiseTilling: 24
     - _OcclusionStrength: 1
+    - _OpacityBoost: 1
     - _OpacityBoosts: 9.5
+    - _OpacityBoots: 0.5
     - _Parallax: 0.02
     - _ReceivesSSR: 1
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
+    - _Roughness: 0
+    - _RoughnessBoost: 0.5
     - _RoughnessBoost01: 1
     - _RoughnessBoost02: 1
     - _RoughnessBoost03: 1
     - _RoughnessBoost04: 1
+    - _RoughnessRoot: 0.06
+    - _RoughnessTip: 0.04
     - _SSSonoff: 1.2
+    - _Scale1: 0.1
     - _SkinPore_Power: 0.25
     - _SkinPore_Tilling: 35
     - _SkinRounghnessBoots: 0
@@ -259,6 +313,7 @@ Material:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveColor1: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor3: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveColor4: {r: 0, g: 0, b: 0, a: 0}
@@ -268,4 +323,11 @@ Material:
     - _HairCapShortColor: {r: 1, g: 1, b: 1, a: 0}
     - _LipNailColor: {r: 1, g: 1, b: 1, a: 0}
     - _PannerProperty1: {r: 0, g: 0, b: 0, a: 0}
+    - _RootColor: {r: 0.31132078, g: 0.18484595, b: 0.107200064, a: 0}
+    - _SSSColor: {r: 1, g: 0.8184171, b: 0.7122642, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TangentA: {r: 0, g: 0.15430906, b: 0.5568628, a: 0.003921569}
+    - _TangentB: {r: 0, g: 0.7781801, b: 1, a: 0.003921569}
+    - _TipColor: {r: 0.12264147, g: 0.0674617, b: 0.03297437, a: 0}
+    - _VTInfoBlock: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

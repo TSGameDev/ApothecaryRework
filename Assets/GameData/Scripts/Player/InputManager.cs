@@ -23,7 +23,8 @@ namespace TSGameDev.Controls
             playerControls.Enable();
             playerControls.Game.Enable();
 
-            playerControls.Game.MouseRightClick.performed += ctx => player.MoveTo();
+            playerControls.Game.MouseRightClick.performed += ctx => player.state.MoveTo();
+            playerControls.Game.ShiftHold.performed += ctx => player.isRunning = !player.isRunning;
         }
 
         private void OnDisable()
