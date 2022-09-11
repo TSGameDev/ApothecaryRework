@@ -22,6 +22,8 @@ namespace TSGameDev.Controls.PlayerStates
         protected NavMeshAgent agent;
         protected Animator anim;
 
+        protected Vector3 playerDestination;
+
         public PlayerState(Player player)
         {
             this.player = player;
@@ -60,7 +62,8 @@ namespace TSGameDev.Controls.PlayerStates
                     agent.ResetPath();
 
                 agent.SetDestination(hit.point);
-                player.transform.LookAt(hit.point);
+                //player.transform.LookAt(hit.point);
+                playerDestination = hit.point;
             }
         }
     }

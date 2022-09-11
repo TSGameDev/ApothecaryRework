@@ -11,7 +11,7 @@ namespace TSGameDev.Controls.PlayerStates
         public override void Update()
         {
             if (anim.GetFloat(player.animSpeed) < 2)
-                anim.SetFloat(player.animSpeed, 2, 0.05f, 0.1f);
+                anim.SetFloat(player.animSpeed, 2, 1.5f, 0.1f);
 
             CheckDestination();
         }

@@ -18,8 +18,10 @@ namespace TSGameDev.Controls.PlayerStates
 
         public override void Update()
         {
-            if (anim.GetFloat(player.animSpeed) > Mathf.Epsilon)
-                anim.SetFloat(player.animSpeed, 0, 0.1f, 0.1f);
+            if (anim.GetFloat(player.animSpeed) > 0.01)
+                anim.SetFloat(player.animSpeed, 0, 1f, 0.1f);
+            else
+                anim.SetFloat(player.animSpeed, 0);
         }
     }
 }

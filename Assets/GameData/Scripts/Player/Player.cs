@@ -19,6 +19,7 @@ namespace TSGameDev.Controls
         NavMeshAgent agent;
         Animator anim;
 
+        public float rotationSpeed = 1f;
         public bool isRunning;
 
         #endregion
@@ -40,7 +41,6 @@ namespace TSGameDev.Controls
         private void Start()
         {
             agent.updatePosition = false;
-            agent.updateRotation = false;
             state = new PlayerStateIdle(this);
         }
 

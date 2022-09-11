@@ -1,6 +1,8 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace TSGameDev.Controls.PlayerStates
@@ -20,9 +22,9 @@ namespace TSGameDev.Controls.PlayerStates
         public override void Update()
         {
             CheckDestination();
-            
-            if(anim.GetFloat(player.animSpeed) < 1)
-                anim.SetFloat(player.animSpeed, 1, 0.05f, 0.1f);
+
+            if (anim.GetFloat(player.animSpeed) < 1)
+                anim.SetFloat(player.animSpeed, 1, 0.35f, 0.1f);
         }
 
         private void CheckDestination()
