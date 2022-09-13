@@ -11,20 +11,23 @@ namespace TSGameDev.Controls.PlayerStates
     {
         public PlayerStateWalking(Player player) : base(player) { }
 
-        public override void MoveTo()
-        {
-            base.MoveTo();
-
-            if (player.isRunning)
-                StateTransition(PlayerStates.Running, PlayerStates.Walking);
-        }
-
         public override void Update()
         {
             CheckDestination();
 
             if (anim.GetFloat(player.animSpeed) < 1)
                 anim.SetFloat(player.animSpeed, 1, 0.35f, 0.1f);
+
+            if (anim.GetFloat(player.animSpeed) > 1)
+                anim.SetFloat(player.animSpeed, 1, 1, 0.1f);
+        }
+
+        public override void MoveTo()
+        {
+            base.MoveTo();
+
+            if (player.isRunning)
+                StateTransition(PlayerStates.Running, PlayerStates.Walking);
         }
 
         private void CheckDestination()

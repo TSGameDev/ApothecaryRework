@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TSGameDev.Controls.PlayerStates
@@ -10,10 +8,10 @@ namespace TSGameDev.Controls.PlayerStates
 
         public override void Update()
         {
+            CheckDestination();
+
             if (anim.GetFloat(player.animSpeed) < 2)
                 anim.SetFloat(player.animSpeed, 2, 1.5f, 0.1f);
-
-            CheckDestination();
         }
 
         public override void MoveTo()
@@ -21,7 +19,11 @@ namespace TSGameDev.Controls.PlayerStates
             base.MoveTo();
 
             if (player.isRunning)
+                StateTransition(PlayerStates.Running, PlayerStates.Walking);
+            else
+            {
                 StateTransition(PlayerStates.Walking, PlayerStates.Running);
+            }
         }
 
         private void CheckDestination()

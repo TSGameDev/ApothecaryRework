@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -21,8 +17,6 @@ namespace TSGameDev.Controls.PlayerStates
         protected Player player;
         protected NavMeshAgent agent;
         protected Animator anim;
-
-        protected Vector3 playerDestination;
 
         public PlayerState(Player player)
         {
@@ -55,15 +49,13 @@ namespace TSGameDev.Controls.PlayerStates
 
         public virtual void MoveTo()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (agent.hasPath)
                     agent.ResetPath();
 
                 agent.SetDestination(hit.point);
-                //player.transform.LookAt(hit.point);
-                playerDestination = hit.point;
             }
         }
     }
