@@ -17,6 +17,7 @@ namespace TSGameDev.Controls
         #region Camera Variables
 
         [SerializeField] CameraConnector cameraConnector;
+        [SerializeField] PlayerConnector playerConnector;
 
         #endregion
 
@@ -30,10 +31,16 @@ namespace TSGameDev.Controls
             playerControls.Enable();
             playerControls.Game.Enable();
 
+            #region Movement Controls
+
             playerControls.Game.MouseRightClick.performed += ctx => player.state.MoveTo();
 
             playerControls.Game.ShiftHold.performed += ctx => player.isRunning = !player.isRunning;
             playerControls.Game.ShiftHold.performed += ctx => cameraConnector.fastMode = !cameraConnector.fastMode;
+
+            #endregion
+
+            #region Camera Controls
 
             playerControls.Game.CameraMovement.performed += ctx => cameraConnector.cameraInput = ctx.ReadValue<Vector2>();
             playerControls.Game.CameraMovement.canceled += ctx => cameraConnector.cameraInput = new Vector2();
@@ -80,6 +87,15 @@ namespace TSGameDev.Controls
             };
 
             playerControls.Game.CameraCenter.performed += ctx => cameraConnector.lockCamera = !cameraConnector.lockCamera;
+
+            #endregion
+
+            #region Interface Controls
+
+            playerControls.Game.Inventory.performed += ctx => playerConnector.InventoryTween();
+
+            #endregion
+
         }
 
         private void OnDisable()
