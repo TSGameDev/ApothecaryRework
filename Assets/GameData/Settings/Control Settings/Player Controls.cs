@@ -91,6 +91,15 @@ namespace TSGameDev.Controls
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Equipment"",
+                    ""type"": ""Button"",
+                    ""id"": ""92c1cb3c-4341-4d12-967d-c5b789f59eec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,6 +245,17 @@ namespace TSGameDev.Controls
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e674059-71c1-4639-96bf-3edacc01be0e"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Equipment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -279,6 +299,7 @@ namespace TSGameDev.Controls
             m_Game_CameraCenter = m_Game.FindAction("Camera Center", throwIfNotFound: true);
             m_Game_CameraZoom = m_Game.FindAction("Camera Zoom", throwIfNotFound: true);
             m_Game_Inventory = m_Game.FindAction("Inventory", throwIfNotFound: true);
+            m_Game_Equipment = m_Game.FindAction("Equipment", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -348,6 +369,7 @@ namespace TSGameDev.Controls
         private readonly InputAction m_Game_CameraCenter;
         private readonly InputAction m_Game_CameraZoom;
         private readonly InputAction m_Game_Inventory;
+        private readonly InputAction m_Game_Equipment;
         public struct GameActions
         {
             private @PlayerControls m_Wrapper;
@@ -359,6 +381,7 @@ namespace TSGameDev.Controls
             public InputAction @CameraCenter => m_Wrapper.m_Game_CameraCenter;
             public InputAction @CameraZoom => m_Wrapper.m_Game_CameraZoom;
             public InputAction @Inventory => m_Wrapper.m_Game_Inventory;
+            public InputAction @Equipment => m_Wrapper.m_Game_Equipment;
             public InputActionMap Get() { return m_Wrapper.m_Game; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -389,6 +412,9 @@ namespace TSGameDev.Controls
                     @Inventory.started -= m_Wrapper.m_GameActionsCallbackInterface.OnInventory;
                     @Inventory.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnInventory;
                     @Inventory.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnInventory;
+                    @Equipment.started -= m_Wrapper.m_GameActionsCallbackInterface.OnEquipment;
+                    @Equipment.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnEquipment;
+                    @Equipment.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnEquipment;
                 }
                 m_Wrapper.m_GameActionsCallbackInterface = instance;
                 if (instance != null)
@@ -414,6 +440,9 @@ namespace TSGameDev.Controls
                     @Inventory.started += instance.OnInventory;
                     @Inventory.performed += instance.OnInventory;
                     @Inventory.canceled += instance.OnInventory;
+                    @Equipment.started += instance.OnEquipment;
+                    @Equipment.performed += instance.OnEquipment;
+                    @Equipment.canceled += instance.OnEquipment;
                 }
             }
         }
@@ -460,6 +489,7 @@ namespace TSGameDev.Controls
             void OnCameraCenter(InputAction.CallbackContext context);
             void OnCameraZoom(InputAction.CallbackContext context);
             void OnInventory(InputAction.CallbackContext context);
+            void OnEquipment(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

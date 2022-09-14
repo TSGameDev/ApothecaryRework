@@ -22,8 +22,6 @@ namespace TSGameDev.Inventories.Equipment
         #region LifeCycle Functions
         private void Awake()
         {
-            var player = GameObject.FindGameObjectWithTag("Player");
-            playerEquipment = player.GetComponent<Equipment>();
             playerEquipment.equipmentUpdated += RedrawUI;
         }
 

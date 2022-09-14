@@ -10,6 +10,9 @@ namespace TSGameDev.UI.Tween
         [SerializeField] PlayerConnector playerConnector;
 
         [SerializeField] TweenProfile inventoryTweenProfile;
+        [SerializeField] TweenProfile equipmentTweenProfile;
+        [SerializeField] TweenProfile statsTweenProfile;
+        [SerializeField] TweenProfile hudIconTweenProfile;
 
         private void Awake()
         {
@@ -20,6 +23,31 @@ namespace TSGameDev.UI.Tween
 
                 return inventoryTweenProfile;
             };
+
+            playerConnector.GetEquipmentUITween = () =>
+            {
+                if (equipmentTweenProfile == null)
+                    return null;
+
+                return equipmentTweenProfile;
+            };
+
+            playerConnector.GetStatsUITween = () =>
+            {
+                if (statsTweenProfile == null)
+                    return null;
+
+                return statsTweenProfile;
+            };
+
+            playerConnector.GetHUDIconUITween = () =>
+            {
+                if (hudIconTweenProfile == null)
+                    return null;
+
+                return hudIconTweenProfile;
+            };
+
         }
     }
 }

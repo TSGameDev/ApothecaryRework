@@ -93,6 +93,7 @@ namespace TSGameDev.Controls
             #region Interface Controls
 
             playerControls.Game.Inventory.performed += ctx => playerConnector.InventoryTween();
+            playerControls.Game.Equipment.performed += ctx => playerConnector.EquipmentTween();
 
             #endregion
 
