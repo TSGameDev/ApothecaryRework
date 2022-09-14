@@ -92,6 +92,8 @@ namespace TSGameDev.UI.Tween
 
             ActiveTweenScale = activationRect.localScale;
             NonactiveTweenScale = deactivationRect.localScale;
+
+            gameObject.SetActive(false);
         }
 
         #endregion

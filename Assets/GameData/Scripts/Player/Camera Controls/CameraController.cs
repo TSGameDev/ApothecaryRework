@@ -29,11 +29,6 @@ namespace TSGameDev.Controls.Camera
         /// </summary>
         void HandleMovementInput()
         {
-            if (cameraConnector.lockCamera)
-            {
-                cameraConnector.newPos = playerTransform.position;
-            }
-
             //Use fast speed if the shift key is down
             if (cameraConnector.fastMode)
                 cameraConnector.currentSpeed = cameraConnector.fastSpeed;
@@ -62,6 +57,13 @@ namespace TSGameDev.Controls.Camera
             else if (cameraConnector.cameraInput.y <= -0.5f)
             {
                 cameraConnector.newPos += (transform.forward * -cameraConnector.currentSpeed);
+            }
+
+            if (cameraConnector.lockCamera)
+            {
+                Vector3 playerPos = playerTransform.position;
+                playerPos.y = gameObject.transform.position.y;
+                cameraConnector.newPos = playerPos;
             }
 
             transform.position = Vector3.Lerp(transform.position, cameraConnector.newPos, Time.deltaTime * cameraConnector.movementLerpTime);
@@ -97,6 +99,11 @@ namespace TSGameDev.Controls.Camera
             else if (cameraConnector.zoomCameraOut)
             {
                 cameraConnector.newZoom += cameraConnector.zoomTickAmount;
+            }
+
+            if (cameraConnector.newZoom.y <= 10 || cameraConnector.newZoom.z >= -10)
+            {
+                cameraConnector.newZoom = new Vector3(0, 10, -10);
             }
             cameraTranform.localPosition = Vector3.Lerp(cameraTranform.localPosition, cameraConnector.newZoom, Time.deltaTime * cameraConnector.movementLerpTime);
         }
