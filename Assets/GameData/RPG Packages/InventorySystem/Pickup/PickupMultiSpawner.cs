@@ -2,6 +2,7 @@ using TSGameDev.SavingSystem;
 using UnityEngine;
 using CodeMonkey.Utils;
 using TSGameDev.Controls.MainPlayer;
+using System;
 
 namespace TSGameDev.Inventories.Pickups
 {
@@ -11,6 +12,7 @@ namespace TSGameDev.Inventories.Pickups
 
         [SerializeField] PlayerConnector playerConnector;
         [SerializeField] InventoryItem item;
+        [SerializeField] string spawnerID = "Unique Spawner ID";
         [SerializeField] int minItemAmount = 1;
         [SerializeField] int maxItemAmount = 2;
         [SerializeField] float respawnTime = 1f;
@@ -19,6 +21,7 @@ namespace TSGameDev.Inventories.Pickups
 
         #region Private Variables
 
+        //The defined and cache amount of items that will be given to the player upon interaction.
         int selectedItemAmount = 0;
 
         #endregion
@@ -52,17 +55,26 @@ namespace TSGameDev.Inventories.Pickups
             return GetPickup() == null;
         }
 
+        /// <summary>
+        /// Function that randomises the amount of items that will be given to the player upon pickup
+        /// </summary>
+        /// <returns>
+        /// A random number, int, of the amount of items that will be given to the player upon being picked up.
+        /// </returns>
         public int SelectItemAmount()
         {
             if (selectedItemAmount == 0)
-                selectedItemAmount = Random.Range(minItemAmount, maxItemAmount);
+                selectedItemAmount = UnityEngine.Random.Range(minItemAmount, maxItemAmount);
 
             return selectedItemAmount;
         }
 
+        /// <summary>
+        /// Sets up the spawners timer, when the timer has been completed the spawn pickup function is run respawning the item this spawner represents.
+        /// </summary>
         public void BeginSpawnerTimer()
         {
-            FunctionTimer.Create(SpawnPickup, respawnTime);
+            FunctionTimer.Create(SpawnPickup, respawnTime, spawnerID);
         }
 
         #endregion
@@ -90,9 +102,15 @@ namespace TSGameDev.Inventories.Pickups
             }
         }
 
+        /// <summary>
+        /// Trigger function that is called when anything with a collider enters the trigger volume on the spawner. Used for when the player enters the range of the spawner to where the player can interact to pickup the item.
+        /// </summary>
+        /// <param name="other">
+        /// The collider of the other object that has entered the trigger volume. In this case only useful if the collider is the player.
+        /// </param>
         private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player") && GetPickup())
+            if (other.CompareTag("Player") && GetPickup())
             {
                 Pickup pickup = GetPickup();
                 if (pickup.CanBePickedUp())
@@ -103,6 +121,16 @@ namespace TSGameDev.Inventories.Pickups
         }
 
         /// <summary>
+        /// A simple struct to combine the 2 different data types that are required for something the spawner state since only a single object can be returned into the save system.
+        /// </summary>
+        [Serializable]
+        private struct MultiSpawnerData
+        {
+            public float savedSpawnTime;
+            public bool hasBeenCollected;
+        }
+
+        /// <summary>
         /// Function implimented by ISavable allows for this script to define saving functionlaity
         /// </summary>
         /// <returns>
@@ -110,7 +138,15 @@ namespace TSGameDev.Inventories.Pickups
         /// </returns>
         object ISaveable.CaptureState()
         {
-            return null;
+            float currentSpawnTime = FunctionTimer.GetTime(spawnerID);
+            bool hasBeenCollected = isCollected();
+            MultiSpawnerData data = new()
+            {
+                savedSpawnTime = currentSpawnTime,
+                hasBeenCollected = hasBeenCollected
+            };
+
+            return data;
         }
 
         /// <summary>
@@ -121,6 +157,13 @@ namespace TSGameDev.Inventories.Pickups
         /// </param>
         void ISaveable.RestoreState(object state)
         {
+            MultiSpawnerData data = (MultiSpawnerData)state;
+
+            if(data.hasBeenCollected)
+            {
+                DestroyPickup();
+                FunctionTimer.Create(SpawnPickup, data.savedSpawnTime, spawnerID);
+            }
 
         }
 

@@ -45,9 +45,6 @@ namespace CodeMonkey.Utils {
             }
         }
 
-
-
-
         public static FunctionTimer Create(Action action, float timer) {
             return Create(action, timer, "", false, false);
         }
@@ -74,6 +71,18 @@ namespace CodeMonkey.Utils {
             timerList.Add(funcTimer);
 
             return funcTimer;
+        }
+
+        public static float GetTime(string funcTimerName)
+        {
+            for (int i = 0; i < timerList.Count; i++)
+            {
+                if (timerList[i].functionName == funcTimerName)
+                {
+                    return timerList[i].timer;
+                }
+            }
+            return 0f;
         }
 
         public static void RemoveTimer(FunctionTimer funcTimer) {
