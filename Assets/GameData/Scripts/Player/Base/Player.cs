@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 using TSGameDev.Controls.PlayerStates;
 
-namespace TSGameDev.Controls
+namespace TSGameDev.Controls.MainPlayer
 {
     [RequireComponent(typeof(InputManager))]
     public class Player : MonoBehaviour

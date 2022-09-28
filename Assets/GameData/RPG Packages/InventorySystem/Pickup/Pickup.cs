@@ -21,16 +21,6 @@ namespace TSGameDev.Inventories.Pickups
 
         #endregion
 
-        #region Life Cycle Functions
-
-        private void Awake()
-        {
-            var player = GameObject.FindGameObjectWithTag("Player");
-            inventory = player.GetComponent<Inventory>();
-        }
-
-        #endregion
-
         #region Public Functions
 
         /// <summary>
@@ -76,8 +66,15 @@ namespace TSGameDev.Inventories.Pickups
         public void PickupItem()
         {
             bool foundSlot = inventory.AddToFirstEmptySlot(item, number);
+            PickupMultiSpawner spawner = GetComponentInParent<PickupMultiSpawner>();
+
             if (foundSlot)
             {
+                if (spawner != null)
+                {
+                    spawner.BeginSpawnerTimer();
+                }
+
                 Destroy(gameObject);
             }
         }

@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6259d2596bc46a84b82c08bfc9ce9f91, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  itemTier: 1
   itemID: f9214421-9f0a-4607-883d-d600bed7ed0a
   displayName: Test1
-  description: 
-  itemPrice: 0
-  itemTier: 1
-  icon: {fileID: 0}
-  pickup: {fileID: 0}
   stackable: 0
+  description: 
+  pickup: {fileID: 6777881150973730106, guid: 18e6dad0e3c0eb447b426acfeaaef0d6, type: 3}
+  sellable: 1
+  minItemPrice:
+    bronze: 0
+    silver: 0
+    gold: 0
+  maxItemPrice:
+    bronze: 0
+    silver: 0
+    gold: 0
   consumable: 0

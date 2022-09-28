@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using TSGameDev.Controls.MainPlayer;
 
 namespace TSGameDev.Controls.PlayerStates
 {

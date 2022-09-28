@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using TSGameDev.Controls;
+using TSGameDev.UI.Controls;
 using UnityEngine;
 
 namespace TSGameDev.UI.Tween
 {
     public class TweenManager : MonoBehaviour
     {
-        [SerializeField] PlayerConnector playerConnector;
+        [SerializeField] UIConnector uiConnector;
 
         [SerializeField] TweenProfile inventoryTweenProfile;
         [SerializeField] TweenProfile equipmentTweenProfile;
@@ -16,7 +14,7 @@ namespace TSGameDev.UI.Tween
 
         private void Awake()
         {
-            playerConnector.GetInventoryUITween = () =>
+            uiConnector.GetInventoryUITween = () =>
             {
                 if (inventoryTweenProfile == null)
                     return null;
@@ -24,7 +22,7 @@ namespace TSGameDev.UI.Tween
                 return inventoryTweenProfile;
             };
 
-            playerConnector.GetEquipmentUITween = () =>
+            uiConnector.GetEquipmentUITween = () =>
             {
                 if (equipmentTweenProfile == null)
                     return null;
@@ -32,7 +30,7 @@ namespace TSGameDev.UI.Tween
                 return equipmentTweenProfile;
             };
 
-            playerConnector.GetStatsUITween = () =>
+            uiConnector.GetStatsUITween = () =>
             {
                 if (statsTweenProfile == null)
                     return null;
@@ -40,7 +38,7 @@ namespace TSGameDev.UI.Tween
                 return statsTweenProfile;
             };
 
-            playerConnector.GetHUDIconUITween = () =>
+            uiConnector.GetHUDIconUITween = () =>
             {
                 if (hudIconTweenProfile == null)
                     return null;

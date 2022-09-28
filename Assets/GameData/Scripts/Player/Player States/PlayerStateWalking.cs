@@ -1,9 +1,5 @@
-using Cinemachine.Utility;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEditor.Rendering;
 using UnityEngine;
+using TSGameDev.Controls.MainPlayer;
 
 namespace TSGameDev.Controls.PlayerStates
 {

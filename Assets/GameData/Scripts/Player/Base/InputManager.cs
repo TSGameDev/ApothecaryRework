@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TSGameDev.Controls.Camera;
+using TSGameDev.Controls.MainPlayer;
+using TSGameDev.UI.Controls;
 
 namespace TSGameDev.Controls
 {
@@ -18,6 +20,7 @@ namespace TSGameDev.Controls
 
         [SerializeField] CameraConnector cameraConnector;
         [SerializeField] PlayerConnector playerConnector;
+        [SerializeField] UIConnector uiConnector;
 
         #endregion
 
@@ -92,8 +95,14 @@ namespace TSGameDev.Controls
 
             #region Interface Controls
 
-            playerControls.Game.Inventory.performed += ctx => playerConnector.InventoryTween();
-            playerControls.Game.Equipment.performed += ctx => playerConnector.EquipmentTween();
+            playerControls.Game.Inventory.performed += ctx => uiConnector.InventoryTween();
+            playerControls.Game.Equipment.performed += ctx => uiConnector.EquipmentTween();
+
+            #endregion
+
+            #region Gameplay Controls
+
+            playerControls.Game.Interaction.performed += ctx => playerConnector.playerInteraction();
 
             #endregion
 

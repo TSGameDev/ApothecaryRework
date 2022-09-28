@@ -1,20 +1,25 @@
-﻿using UnityEngine;
 using TSGameDev.SavingSystem;
+using UnityEngine;
+using CodeMonkey.Utils;
 using TSGameDev.Controls.MainPlayer;
 
 namespace TSGameDev.Inventories.Pickups
 {
-    /// <summary>
-    /// Spawns pickups that should exist on first load in a level. This
-    /// automatically spawns the correct prefab for a given inventory item.
-    /// </summary>
-    public class PickupSpawner : MonoBehaviour, ISaveable
+    public class PickupMultiSpawner : MonoBehaviour, ISaveable
     {
         #region Serialized Variables
 
         [SerializeField] PlayerConnector playerConnector;
-        [SerializeField] InventoryItem item = null;
-        [SerializeField] int number = 1;
+        [SerializeField] InventoryItem item;
+        [SerializeField] int minItemAmount = 1;
+        [SerializeField] int maxItemAmount = 2;
+        [SerializeField] float respawnTime = 1f;
+
+        #endregion
+
+        #region Private Variables
+
+        int selectedItemAmount = 0;
 
         #endregion
 
@@ -34,17 +39,30 @@ namespace TSGameDev.Inventories.Pickups
         /// Returns the pickup spawned by this class if it exists.
         /// </summary>
         /// <returns>Returns null if the pickup has been collected.</returns>
-        public Pickup GetPickup() 
-        { 
+        public Pickup GetPickup()
+        {
             return GetComponentInChildren<Pickup>();
         }
 
         /// <summary>
         /// True if the pickup was collected.
         /// </summary>
-        public bool isCollected() 
-        { 
+        public bool isCollected()
+        {
             return GetPickup() == null;
+        }
+
+        public int SelectItemAmount()
+        {
+            if (selectedItemAmount == 0)
+                selectedItemAmount = Random.Range(minItemAmount, maxItemAmount);
+
+            return selectedItemAmount;
+        }
+
+        public void BeginSpawnerTimer()
+        {
+            FunctionTimer.Create(SpawnPickup, respawnTime);
         }
 
         #endregion
@@ -56,8 +74,9 @@ namespace TSGameDev.Inventories.Pickups
         /// </summary>
         private void SpawnPickup()
         {
-            var spawnedPickup = item.SpawnPickup(transform.position, number);
+            var spawnedPickup = item.SpawnPickup(transform.position, SelectItemAmount());
             spawnedPickup.transform.SetParent(transform);
+            selectedItemAmount = 0;
         }
 
         /// <summary>
@@ -73,11 +92,13 @@ namespace TSGameDev.Inventories.Pickups
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player") && GetPickup())
+            if(other.CompareTag("Player") && GetPickup())
             {
                 Pickup pickup = GetPickup();
                 if (pickup.CanBePickedUp())
+                {
                     playerConnector.playerInteraction = pickup.PickupItem;
+                }
             }
         }
 
@@ -89,7 +110,7 @@ namespace TSGameDev.Inventories.Pickups
         /// </returns>
         object ISaveable.CaptureState()
         {
-            return isCollected();
+            return null;
         }
 
         /// <summary>
@@ -100,17 +121,7 @@ namespace TSGameDev.Inventories.Pickups
         /// </param>
         void ISaveable.RestoreState(object state)
         {
-            bool shouldBeCollected = (bool)state;
 
-            if (shouldBeCollected && !isCollected())
-            {
-                DestroyPickup();
-            }
-
-            if (!shouldBeCollected && isCollected())
-            {
-                SpawnPickup();
-            }
         }
 
         #endregion
