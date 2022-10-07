@@ -10,7 +10,7 @@ namespace TSGameDev.Inventories
     ///
     /// This component should be placed on the GameObject tagged "Player".
     /// </summary>
-    [CreateAssetMenu(menuName = ("TSGameDev/Inventory/Inventory"))]
+    [CreateAssetMenu(menuName = ("TSGameDev/Inventory/Inventory"), fileName = "New Inventory", order = 1)]
     public class Inventory : ScriptableObject, ISaveable
     {
         #region Serialized Variables

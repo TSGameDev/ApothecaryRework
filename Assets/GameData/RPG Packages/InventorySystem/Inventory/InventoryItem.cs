@@ -21,6 +21,11 @@ namespace TSGameDev.Inventories
         public int gold;
     }
 
+    public enum Effects
+    {
+
+    }
+
     /// <summary>
     /// A ScriptableObject that represents any item that can be put in an
     /// inventory.
@@ -29,7 +34,7 @@ namespace TSGameDev.Inventories
     /// In practice, you are likely to use a subclass such as `ActionItem` or
     /// `EquipableItem`.
     /// </remarks>
-    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
+    public abstract class InventoryItem : SerializedScriptableObject, ISerializationCallbackReceiver
     {
         #region Serialized Variables
 
@@ -44,6 +49,8 @@ namespace TSGameDev.Inventories
         [VerticalGroup("Tab1/General Information/Split/Left")]
         [Tooltip("Item Tier")]
         [LabelWidth(53)]
+        [MinValue(1)]
+        [MaxValue(10)]
         [SerializeField] int itemTier = 1;
 
         [VerticalGroup("Tab1/General Information/Split/Right")]

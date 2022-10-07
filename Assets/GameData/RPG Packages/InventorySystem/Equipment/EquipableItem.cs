@@ -23,10 +23,25 @@ namespace TSGameDev.Inventories.Equipment
         OffHand,
     }
 
+    public enum DamageTypes
+    {
+        
+    }
+
+    public enum DamageResistancies
+    {
+
+    }
+
+    public enum StatusResistances
+    {
+
+    }
+
     /// <summary>
     /// A scriptable object that inherits from the base of Inventory Item providing a baseline amount of functionlaity to then add on the specific functionlaity for equipment (weapons, armour and jewlery)
     /// </summary>
-    [CreateAssetMenu(menuName = ("TSGameDev/Inventory/EquipableItem"))]
+    //[CreateAssetMenu(menuName = ("TSGameDev/Inventory/EquipableItem"))]
     public class EquipableItem : InventoryItem
     {
         #region Serialised Variables
@@ -34,7 +49,7 @@ namespace TSGameDev.Inventories.Equipment
         [TabGroup("Tab1", "Equipment Information")]
         [Tooltip("List of all the locations this equipment can be attached to.")]
         [SerializeField]
-        List<EquipLocation> allowedEquipLocation = new List<EquipLocation>
+        protected List<EquipLocation> allowedEquipLocation = new List<EquipLocation>
         {
             EquipLocation.MainHand
         };

@@ -10,7 +10,7 @@ namespace TSGameDev.Inventories.Actions
     /// This class should be used as a base. Subclasses must implement the `Use`
     /// method.
     /// </remarks>
-    [CreateAssetMenu(menuName = ("TSGameDev/Inventory/Action Item"))]
+    //[CreateAssetMenu(menuName = ("TSGameDev/Inventory/Action Item"))]
     public class ActionItem : InventoryItem
     {
         [TabGroup("Tab1", "Action Information")]
