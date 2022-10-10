@@ -6,13 +6,6 @@ namespace TSGameDev.Inventories
 {
     public struct BunsenBurnerProcess
     {
-        public BunsenBurnerProcess(int minTemp, int maxTemp, InventoryItem result)
-        {
-            this.minTemp = minTemp;
-            this.maxTemp = maxTemp;
-            this.result = result;
-        }
-
         [MinValue(1)]
         [MaxValue(299)]
         public int minTemp;
@@ -20,11 +13,20 @@ namespace TSGameDev.Inventories
         [MaxValue(300)]
         public int maxTemp;
         public InventoryItem result;
+
+        public BunsenBurnerProcess(InventoryItem result, int minTemp = 1, int maxTemp = 300)
+        {
+            this.minTemp = minTemp;
+            this.maxTemp = maxTemp;
+            this.result = result;
+        }
     }
 
     [CreateAssetMenu(menuName = ("TSGameDev/Inventory/New Reagent Item"))]
     public class ReagentItem : InventoryItem
     {
+        #region Serialised Variables
+
         [TabGroup("Tab1", "Reagent Information")]
         [PropertyTooltip("A list of all the effect this ingredient provides to the potions it creates")]
         [SerializeField] Dictionary<Effects, int> alchemicalEffects = new();
@@ -79,5 +81,65 @@ namespace TSGameDev.Inventories
         [TabGroup("Tab1", "Reagent Information")]
         [PropertyTooltip("A list of all the results of this ingredient when processed under bunsen burner.")]
         [SerializeField] List<BunsenBurnerProcess> bunsenburnerResults = new();
+
+        #endregion
+
+        #region Public Functions
+
+        public Dictionary<Effects, int> GetReagentEffects()
+        {
+            return alchemicalEffects;
+        }
+
+        public int SearchReagentEffects(Effects effect)
+        {
+            if (!alchemicalEffects.ContainsKey(effect))
+                return 0;
+
+            return alchemicalEffects[effect];
+        }
+
+        public InventoryItem GetMortarPrimaryResult()
+        {
+            return mortarAndPestleResult;
+        }
+
+        public InventoryItem GetMortarSecondaryResult()
+        {
+            return mortarAndPestleResult2;
+        }
+
+        public InventoryItem GetBlendingResult()
+        {
+            return blenderResult;
+        }
+
+        public InventoryItem GetJuicerPrimaryResult()
+        {
+            return juicerResult;
+        }
+
+        public InventoryItem GetJuicerSecondaryResult()
+        {
+            return juicerResult2;
+        }
+
+        public InventoryItem GetChoppingPrimaryResult()
+        {
+            return choppingResult;
+        }
+
+        public InventoryItem GetChoppingSecondaryResult()
+        {
+            return choppingResult2;
+        }
+
+        public List<BunsenBurnerProcess> GetBunsenBurnerProcesses()
+        {
+            return bunsenburnerResults;
+        }
+
+        #endregion
+
     }
 }

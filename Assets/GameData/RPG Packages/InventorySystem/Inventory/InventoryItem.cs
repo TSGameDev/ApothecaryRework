@@ -23,7 +23,10 @@ namespace TSGameDev.Inventories
 
     public enum Effects
     {
-
+        Healing,
+        Cleansing,
+        Poison,
+        Cursed,
     }
 
     /// <summary>

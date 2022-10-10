@@ -45,7 +45,6 @@ namespace TSGameDev.Inventories.Equipment
         /// </returns>
         public int MaxAcceptable(InventoryItem item)
         {
-            Debug.Log("Checking Max Acceptable");
             EquipableItem equipableItem = item as EquipableItem;
             List<EquipLocation> equipableItemLocations = equipableItem.GetAllowedEquipLocations();
 
