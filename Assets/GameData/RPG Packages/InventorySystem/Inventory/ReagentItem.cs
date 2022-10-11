@@ -91,7 +91,7 @@ namespace TSGameDev.Inventories
             return alchemicalEffects;
         }
 
-        public int SearchReagentEffects(Effects effect)
+        public int SearchReagentEffect(Effects effect)
         {
             if (!alchemicalEffects.ContainsKey(effect))
                 return 0;

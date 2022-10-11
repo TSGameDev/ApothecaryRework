@@ -822,11 +822,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fd15e91916ffb48bc6e8e2ea531a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleText: {fileID: 5120549493878841409}
-  bodyText: {fileID: 457067743608248985}
-  itemMinPriceText: {fileID: 0}
-  itemMaxPriceText: {fileID: 0}
-  itemTierText: {fileID: 0}
+  title: {fileID: 5120549493878841409}
+  itemIcon: {fileID: 3517000783211046607}
+  description: {fileID: 457067743608248985}
+  itemType: {fileID: 4134932710857000171}
+  itemTier: {fileID: 7153399795161810899}
+  minPriceBronze: {fileID: 4820599506805327982}
+  maxPriceBronze: {fileID: 8098960558848788516}
+  minPriceSilver: {fileID: 4280274179412295239}
+  maxPriceSilver: {fileID: 2741604402466464254}
+  minPriceGold: {fileID: 6637072144000763}
+  maxPriceGold: {fileID: 3967947971171924840}
+  knownEffects: {fileID: 3786268322953325442}
+  knownProcesses: {fileID: 4322115241325391423}
 --- !u!1 &2783783515664367458
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1006,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.024, y: 0.29621443}
   m_AnchorMax: {x: 0.98200005, y: 0.52852374}
-  m_AnchoredPosition: {x: -0.14300537, y: 0.12575912}
+  m_AnchoredPosition: {x: -0.14300537, y: 0.12576294}
   m_SizeDelta: {x: -0.6013, y: 0.25149}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1393211226222735349

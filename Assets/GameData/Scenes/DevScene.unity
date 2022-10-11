@@ -2139,6 +2139,23 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &2110964553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110964545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ee2cca618298840add58f037ac490f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryToPopulate: {fileID: 11400000, guid: 8ed5a492adab5904282610fb77c2e407,
+    type: 2}
+  startingItems:
+  - {fileID: 11400000, guid: bd20b8d895025b742968bbfe20de4e00, type: 2}
+  - {fileID: 11400000, guid: b3378625263ed8941a4d147c7efb6e4a, type: 2}
 --- !u!1001 &27469140563619136
 PrefabInstance:
   m_ObjectHideFlags: 0

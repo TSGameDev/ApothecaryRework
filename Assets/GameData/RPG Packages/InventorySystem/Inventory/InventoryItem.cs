@@ -29,6 +29,21 @@ namespace TSGameDev.Inventories
         Cursed,
     }
 
+    public enum ItemTier
+    {
+        Common,
+        Uncommon,
+        Rare,
+        VeryRare,
+        Epic,
+        Exotic,
+        Fabled,
+        Divine,
+        Tyrant,
+        God,
+
+    }
+
     /// <summary>
     /// A ScriptableObject that represents any item that can be put in an
     /// inventory.
@@ -54,7 +69,7 @@ namespace TSGameDev.Inventories
         [LabelWidth(53)]
         [MinValue(1)]
         [MaxValue(10)]
-        [SerializeField] int itemTier = 1;
+        [SerializeField] ItemTier itemTier = ItemTier.Common;
 
         [VerticalGroup("Tab1/General Information/Split/Right")]
         [Tooltip("Auto-generated UUID for saving/loading. Clear this field if you want to generate a new one.")]
@@ -241,7 +256,7 @@ namespace TSGameDev.Inventories
         /// <returns>
         /// a number int of the tier of this item.
         /// </returns>
-        public int GetTier()
+        public ItemTier GetTier()
         {
             return itemTier;
         }
