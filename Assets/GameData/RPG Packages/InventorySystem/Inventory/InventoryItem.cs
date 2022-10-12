@@ -21,6 +21,7 @@ namespace TSGameDev.Inventories
         public int gold;
     }
 
+    [Serializable]
     public enum Effects
     {
         Healing,
@@ -29,6 +30,7 @@ namespace TSGameDev.Inventories
         Cursed,
     }
 
+    [Serializable]
     public enum ItemTier
     {
         Common,

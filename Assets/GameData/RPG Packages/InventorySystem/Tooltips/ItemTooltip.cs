@@ -76,12 +76,14 @@ namespace TSGameDev.Inventories.ToolTips
 
         private string ReagentEffectSetup(ReagentItem reagentItem)
         {
+            Debug.Log(reagentItem);
             string knownEffectBuilder = $"Known Effects: {Environment.NewLine} ";
-
-            foreach (KeyValuePair<Effects, int> ingredientEffect in reagentItem.GetReagentEffects())
+            List<IngredientEffects> itemEffects = reagentItem.GetReagentEffects();
+            Debug.Log(itemEffects.Count);
+            foreach(IngredientEffects ingredientEffect in itemEffects)
             {
-                string keyEffectName = Enum.GetName(typeof(Effects), ingredientEffect.Key);
-                string EffectTier = ingredientEffect.Value.ToString();
+                string keyEffectName = Enum.GetName(typeof(Effects), ingredientEffect.effect);
+                string EffectTier = ingredientEffect.effectTier.ToString();
 
                 knownEffectBuilder += $"{keyEffectName} {EffectTier} {Environment.NewLine}";
             }
@@ -91,76 +93,86 @@ namespace TSGameDev.Inventories.ToolTips
         private string ReagentProcessingSetup(ReagentItem reagentItem)
         {
             string knownProcessBuilder = $"Known Processes: {Environment.NewLine}";
-            MortarProcessingSetup(reagentItem, knownProcessBuilder);
-            BlenderProcessingSetup(reagentItem, knownProcessBuilder);
-            JuicerProcessingSetup(reagentItem, knownProcessBuilder);
-            ChoppingProcessingSetup(reagentItem, knownProcessBuilder);
-            BunsenProcessingSetup(reagentItem, knownProcessBuilder);
+            knownProcessBuilder += MortarProcessingSetup(reagentItem);
+            knownProcessBuilder += BlenderProcessingSetup(reagentItem);
+            knownProcessBuilder += JuicerProcessingSetup(reagentItem);
+            knownProcessBuilder += ChoppingProcessingSetup(reagentItem);
+            knownProcessBuilder += BunsenProcessingSetup(reagentItem);
             return knownProcessBuilder;
         }
 
-        private void MortarProcessingSetup(ReagentItem reagentItem, string knownProcessBuilder)
+        private string MortarProcessingSetup(ReagentItem reagentItem)
         {
+            string stringBuilder = "";
             InventoryItem MortarResult = reagentItem.GetMortarPrimaryResult();
             if (MortarResult != null)
             {
-                knownProcessBuilder += $"Mortar: {MortarResult.GetDisplayName()}, ";
+                stringBuilder += $"Mortar: {MortarResult.GetDisplayName()}, ";
                 InventoryItem MortarSecResult = reagentItem.GetMortarSecondaryResult();
                 if (MortarSecResult != null)
                 {
-                    knownProcessBuilder += $"{MortarSecResult.GetDisplayName()} {Environment.NewLine}";
+                    stringBuilder += $"{MortarSecResult.GetDisplayName()} {Environment.NewLine}";
                 }
             }
+            return stringBuilder;
         }
 
-        private void BlenderProcessingSetup(ReagentItem reagentItem, string knownProcessBuilder)
+        private string BlenderProcessingSetup(ReagentItem reagentItem)
         {
+            string stringBuilder = "";
             InventoryItem BlenderResult = reagentItem.GetBlendingResult();
             if (BlenderResult != null)
             {
-                knownProcessBuilder += $"Blender: {BlenderResult.GetDisplayName()} {Environment.NewLine}";
+                stringBuilder += $"Blender: {BlenderResult.GetDisplayName()} {Environment.NewLine}";
             }
+            return stringBuilder;
         }
 
-        private void JuicerProcessingSetup(ReagentItem reagentItem, string knownProcessBuilder)
+        private string JuicerProcessingSetup(ReagentItem reagentItem)
         {
+            string stringBuilder = "";
             InventoryItem JuicerResult = reagentItem.GetJuicerPrimaryResult();
             if (JuicerResult != null)
             {
-                knownProcessBuilder += $"Juicer: {JuicerResult.GetDisplayName()}, ";
+                stringBuilder += $"Juicer: {JuicerResult.GetDisplayName()}, ";
                 InventoryItem JuicerSecResult = reagentItem.GetJuicerSecondaryResult();
                 if (JuicerSecResult != null)
                 {
-                    knownProcessBuilder += $"{JuicerSecResult.GetDisplayName()} {Environment.NewLine}";
+                    stringBuilder += $"{JuicerSecResult.GetDisplayName()} {Environment.NewLine}";
                 }
             }
+            return stringBuilder;
         }
 
-        private void ChoppingProcessingSetup(ReagentItem reagentItem, string knownProcessBuilder)
+        private string ChoppingProcessingSetup(ReagentItem reagentItem)
         {
+            string stringBuilder = "";
             InventoryItem ChoppingResult = reagentItem.GetChoppingPrimaryResult();
             if (ChoppingResult != null)
             {
-                knownProcessBuilder += $"Juicer: {ChoppingResult.GetDisplayName()}, ";
+                stringBuilder += $"Juicer: {ChoppingResult.GetDisplayName()}, ";
                 InventoryItem ChoppingSecResult = reagentItem.GetChoppingSecondaryResult();
                 if (ChoppingSecResult != null)
                 {
-                    knownProcessBuilder += $"{ChoppingSecResult.GetDisplayName()} {Environment.NewLine}";
+                    stringBuilder += $"{ChoppingSecResult.GetDisplayName()} {Environment.NewLine}";
                 }
             }
+            return stringBuilder;
         }
 
-        private void BunsenProcessingSetup(ReagentItem reagentItem, string knownProcessBuilder)
+        private string BunsenProcessingSetup(ReagentItem reagentItem)
         {
+            string stringBuilder = "";
             List<BunsenBurnerProcess> BunsenResult = reagentItem.GetBunsenBurnerProcesses();
             if (BunsenResult != null)
             {
-                knownProcessBuilder += $"Bunsen: ";
+                stringBuilder += $"Bunsen: ";
                 foreach (BunsenBurnerProcess process in BunsenResult)
                 {
-                    knownProcessBuilder += $"{process.minTemp} - {process.maxTemp} = {process.result.GetDisplayName()}, ";
+                    stringBuilder += $"{process.minTemp} - {process.maxTemp} = {process.result.GetDisplayName()}, ";
                 }
             }
+            return stringBuilder;
         }
 
         #endregion

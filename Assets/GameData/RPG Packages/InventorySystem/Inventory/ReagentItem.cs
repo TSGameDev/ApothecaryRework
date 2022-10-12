@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 
 namespace TSGameDev.Inventories
 {
+    [Serializable]
     public struct BunsenBurnerProcess
     {
         [MinValue(1)]
@@ -22,6 +24,21 @@ namespace TSGameDev.Inventories
         }
     }
 
+    [Serializable]
+    public struct IngredientEffects
+    {
+        public Effects effect;
+        [MinValue(1)]
+        [MaxValue(10)]
+        public int effectTier;
+
+        public IngredientEffects(Effects effect, int effectTier)
+        {
+            this.effect = effect;
+            this.effectTier = effectTier;
+        }
+    }
+
     [CreateAssetMenu(menuName = ("TSGameDev/Inventory/New Reagent Item"))]
     public class ReagentItem : InventoryItem
     {
@@ -29,7 +46,7 @@ namespace TSGameDev.Inventories
 
         [TabGroup("Tab1", "Reagent Information")]
         [PropertyTooltip("A list of all the effect this ingredient provides to the potions it creates")]
-        [SerializeField] Dictionary<Effects, int> alchemicalEffects = new();
+        [SerializeField] List<IngredientEffects> alchemicalEffects;
 
         [TitleGroup("Tab1/Reagent Information/Mortar and Pestle Results")]
         [HorizontalGroup("Tab1/Reagent Information/Mortar and Pestle Results/Mortar")]
@@ -80,23 +97,27 @@ namespace TSGameDev.Inventories
         [Title("Bunson Burner Results")]
         [TabGroup("Tab1", "Reagent Information")]
         [PropertyTooltip("A list of all the results of this ingredient when processed under bunsen burner.")]
-        [SerializeField] List<BunsenBurnerProcess> bunsenburnerResults = new();
+        [SerializeField] List<BunsenBurnerProcess> bunsenburnerResults;
 
         #endregion
 
         #region Public Functions
 
-        public Dictionary<Effects, int> GetReagentEffects()
+        public List<IngredientEffects> GetReagentEffects()
         {
             return alchemicalEffects;
         }
 
         public int SearchReagentEffect(Effects effect)
         {
-            if (!alchemicalEffects.ContainsKey(effect))
-                return 0;
-
-            return alchemicalEffects[effect];
+            foreach(IngredientEffects itemEffect in alchemicalEffects)
+            {
+                if(effect == itemEffect.effect)
+                {
+                    return itemEffect.effectTier;
+                }
+            }
+            return 0;
         }
 
         public InventoryItem GetMortarPrimaryResult()
