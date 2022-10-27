@@ -733,9 +733,9 @@ GameObject:
   - component: {fileID: 2530461690690390919}
   - component: {fileID: 2530461690690390921}
   - component: {fileID: 2530461690690390918}
-  - component: {fileID: -3333331892428183001}
+  - component: {fileID: 8044064152654189254}
   m_Layer: 5
-  m_Name: Reagent ToolTip
+  m_Name: Base ToolTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-3333331892428183001
+--- !u!114 &8044064152654189254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2530461690690390916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 030f559169ad39744b4980ae2ec7d822, type: 3}
+  m_Script: {fileID: 11500000, guid: c4fd15e91916ffb48bc6e8e2ea531a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 5120549493878841409}
@@ -2291,7 +2291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2778317849860337671}
   m_Layer: 0
-  m_Name: MaxPriceOBJ
+  m_Name: MinPriceOBJ (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using TMPro;
-using TSGameDev.Inventories;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using TMPro;
 
 namespace TSGameDev.Inventories.ToolTips
 {
@@ -13,34 +12,50 @@ namespace TSGameDev.Inventories.ToolTips
     public class ItemTooltip : MonoBehaviour
     {
         #region Serialized Variables
-
-        [SerializeField] TextMeshProUGUI title;
-        [SerializeField] Image itemIcon;
-        [SerializeField] TextMeshProUGUI description;
-        [SerializeField] TextMeshProUGUI itemType;
-        [SerializeField] TextMeshProUGUI itemTier;
-        [SerializeField] TextMeshProUGUI minPriceBronze;
-        [SerializeField] TextMeshProUGUI maxPriceBronze;
-        [SerializeField] TextMeshProUGUI minPriceSilver;
-        [SerializeField] TextMeshProUGUI maxPriceSilver;
-        [SerializeField] TextMeshProUGUI minPriceGold;
-        [SerializeField] TextMeshProUGUI maxPriceGold;
-        [SerializeField] TextMeshProUGUI knownEffects;
-        [SerializeField] TextMeshProUGUI knownProcesses;
-
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI title;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected Image itemIcon;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI description;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI itemType;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI itemTier;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI minPriceBronze;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI maxPriceBronze;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI minPriceSilver;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI maxPriceSilver;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI minPriceGold;
+        [TabGroup("tab1", "Generic Info")]
+        [SerializeField] protected TextMeshProUGUI maxPriceGold;
 
         #endregion
 
         #region Public Functions
 
-        public void Setup(InventoryItem item)
+        /// <summary>
+        /// The set up function for the tooltip, called by the spawner to correctly assign the items data.
+        /// </summary>
+        /// <param name="item">The hovered item in a ui</param>
+        public virtual void Setup(InventoryItem item)
         {
             GeneralSetup(item);
-
-            ReagentItem reagentItem = item as ReagentItem;
-            ReagentSetup(reagentItem);
         }
 
+        #endregion
+
+        #region Private functions
+
+        /// <summary>
+        /// Function that performs the functionlaity for general setup correctly assigning information that is present in most or all items like the name and description.
+        /// </summary>
+        /// <param name="item">The item hovered in a UI container</param>
         private void GeneralSetup(InventoryItem item)
         {
             title.text = item.GetDisplayName();
@@ -61,118 +76,6 @@ namespace TSGameDev.Inventories.ToolTips
             maxPriceBronze.text = MaxPrice.bronze.ToString();
             maxPriceSilver.text = MaxPrice.silver.ToString();
             maxPriceGold.text = MaxPrice.gold.ToString();
-        }
-
-        private void ReagentSetup(ReagentItem reagentItem)
-        {
-            if (reagentItem == null)
-                return;
-
-            itemType.text = "Reagent Ingredient";
-
-            knownEffects.text = ReagentEffectSetup(reagentItem);
-            knownProcesses.text = ReagentProcessingSetup(reagentItem);
-        }
-
-        private string ReagentEffectSetup(ReagentItem reagentItem)
-        {
-            Debug.Log(reagentItem);
-            string knownEffectBuilder = $"Known Effects: {Environment.NewLine} ";
-            List<IngredientEffects> itemEffects = reagentItem.GetReagentEffects();
-            Debug.Log(itemEffects.Count);
-            foreach(IngredientEffects ingredientEffect in itemEffects)
-            {
-                string keyEffectName = Enum.GetName(typeof(Effects), ingredientEffect.effect);
-                string EffectTier = ingredientEffect.effectTier.ToString();
-
-                knownEffectBuilder += $"{keyEffectName} {EffectTier} {Environment.NewLine}";
-            }
-            return knownEffectBuilder;
-        }
-
-        private string ReagentProcessingSetup(ReagentItem reagentItem)
-        {
-            string knownProcessBuilder = $"Known Processes: {Environment.NewLine}";
-            knownProcessBuilder += MortarProcessingSetup(reagentItem);
-            knownProcessBuilder += BlenderProcessingSetup(reagentItem);
-            knownProcessBuilder += JuicerProcessingSetup(reagentItem);
-            knownProcessBuilder += ChoppingProcessingSetup(reagentItem);
-            knownProcessBuilder += BunsenProcessingSetup(reagentItem);
-            return knownProcessBuilder;
-        }
-
-        private string MortarProcessingSetup(ReagentItem reagentItem)
-        {
-            string stringBuilder = "";
-            InventoryItem MortarResult = reagentItem.GetMortarPrimaryResult();
-            if (MortarResult != null)
-            {
-                stringBuilder += $"Mortar: {MortarResult.GetDisplayName()}, ";
-                InventoryItem MortarSecResult = reagentItem.GetMortarSecondaryResult();
-                if (MortarSecResult != null)
-                {
-                    stringBuilder += $"{MortarSecResult.GetDisplayName()} {Environment.NewLine}";
-                }
-            }
-            return stringBuilder;
-        }
-
-        private string BlenderProcessingSetup(ReagentItem reagentItem)
-        {
-            string stringBuilder = "";
-            InventoryItem BlenderResult = reagentItem.GetBlendingResult();
-            if (BlenderResult != null)
-            {
-                stringBuilder += $"Blender: {BlenderResult.GetDisplayName()} {Environment.NewLine}";
-            }
-            return stringBuilder;
-        }
-
-        private string JuicerProcessingSetup(ReagentItem reagentItem)
-        {
-            string stringBuilder = "";
-            InventoryItem JuicerResult = reagentItem.GetJuicerPrimaryResult();
-            if (JuicerResult != null)
-            {
-                stringBuilder += $"Juicer: {JuicerResult.GetDisplayName()}, ";
-                InventoryItem JuicerSecResult = reagentItem.GetJuicerSecondaryResult();
-                if (JuicerSecResult != null)
-                {
-                    stringBuilder += $"{JuicerSecResult.GetDisplayName()} {Environment.NewLine}";
-                }
-            }
-            return stringBuilder;
-        }
-
-        private string ChoppingProcessingSetup(ReagentItem reagentItem)
-        {
-            string stringBuilder = "";
-            InventoryItem ChoppingResult = reagentItem.GetChoppingPrimaryResult();
-            if (ChoppingResult != null)
-            {
-                stringBuilder += $"Juicer: {ChoppingResult.GetDisplayName()}, ";
-                InventoryItem ChoppingSecResult = reagentItem.GetChoppingSecondaryResult();
-                if (ChoppingSecResult != null)
-                {
-                    stringBuilder += $"{ChoppingSecResult.GetDisplayName()} {Environment.NewLine}";
-                }
-            }
-            return stringBuilder;
-        }
-
-        private string BunsenProcessingSetup(ReagentItem reagentItem)
-        {
-            string stringBuilder = "";
-            List<BunsenBurnerProcess> BunsenResult = reagentItem.GetBunsenBurnerProcesses();
-            if (BunsenResult != null)
-            {
-                stringBuilder += $"Bunsen: ";
-                foreach (BunsenBurnerProcess process in BunsenResult)
-                {
-                    stringBuilder += $"{process.minTemp} - {process.maxTemp} = {process.result.GetDisplayName()}, ";
-                }
-            }
-            return stringBuilder;
         }
 
         #endregion
