@@ -1,6 +1,6 @@
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace TSGameDev.Inventories
 {
@@ -26,11 +26,11 @@ namespace TSGameDev.Inventories
 
         [TabGroup("Tab1", "Base Information")]
         [PropertyTooltip("A list of all the effect this ingredient provides to the potions it creates")]
-        [SerializeField] List<BaseAlchemicalEffects> positiveAlchemicalEffectBonuses;
+        [SerializeField] List<BaseAlchemicalEffects> positiveAlchemicalBonuses;
 
         [TabGroup("Tab1", "Base Information")]
         [PropertyTooltip("A list of all the effect this ingredient provides to the potions it creates")]
-        [SerializeField] List<BaseAlchemicalEffects> negativeAlchemicalEffectBonuses;
+        [SerializeField] List<BaseAlchemicalEffects> negativeAlchemicalBonuses;
 
         [PropertyTooltip("A Dictionary of Effects and tiers. The effects of stated tier or lower can't be put on this item, higher tiers of this effect are potent enough to be able to be applied to this item.")]
         [SerializeField] Dictionary<Effects, int> alchemicalEffectBlockages = new();
@@ -41,12 +41,12 @@ namespace TSGameDev.Inventories
 
         public List<BaseAlchemicalEffects> GetPositiveAlchemicalEffectBonuses()
         {
-            return positiveAlchemicalEffectBonuses;
+            return positiveAlchemicalBonuses;
         }
 
         public List<BaseAlchemicalEffects> GetNegativeAlchemicalEffectBonuses()
         {
-            return negativeAlchemicalEffectBonuses;
+            return negativeAlchemicalBonuses;
         }
 
         public Dictionary<Effects, int> GetAlchemicalEffectBlockages()

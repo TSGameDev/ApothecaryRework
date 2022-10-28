@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -45,10 +44,9 @@ public class ReagentItemTooltip : ItemTooltip
 
     private string ReagentEffectSetup(ReagentItem reagentItem)
     {
-        Debug.Log(reagentItem);
         string knownEffectBuilder = $"Known Effects: {Environment.NewLine} ";
         List<IngredientEffects> itemEffects = reagentItem.GetReagentEffects();
-        Debug.Log(itemEffects.Count);
+
         foreach (IngredientEffects ingredientEffect in itemEffects)
         {
             string keyEffectName = Enum.GetName(typeof(Effects), ingredientEffect.effect);
