@@ -42,7 +42,7 @@ public class BaseItemTooltip : ItemTooltip
         if (baseItem == null)
             return;
 
-        itemType.text = "Reagent Ingredient";
+        itemType.text = "Base Ingredient";
 
         positiveAlchemicalBonusesTxt.text = PositiveBonusesToolTip(baseItem);
         negativeAlchemicalBonusesTxt.text = NegativeBonusesTooltip(baseItem);
@@ -56,20 +56,44 @@ public class BaseItemTooltip : ItemTooltip
 
         foreach(BaseAlchemicalEffects bonus in positiveBonuses)
         {
+            string effectName = Enum.GetName(typeof(BaseAlchemicalEffects), bonus.effect);
+            int effectPercentileBonus = bonus.effectPercentileBonus;
 
+            builderString += $"{effectName} - {effectPercentileBonus}{newline}";
         }
 
+        return builderString;
         
     }
 
     private string NegativeBonusesTooltip(BaseItem baseItem)
     {
+        string builderString = $"Negative Bonuses: {newline}";
+        List<BaseAlchemicalEffects> negativeBonuses = baseItem.GetNegativeAlchemicalEffectBonuses();
 
+        foreach(BaseAlchemicalEffects bonus in negativeBonuses)
+        {
+            string effectName = Enum.GetName (typeof(BaseAlchemicalEffects), bonus.effect);
+            int effectPercentileBonus = bonus.effectPercentileBonus;
+
+            builderString += $"{effectName} - {effectPercentileBonus}{newline}";
+        }
+        return builderString;
     }
 
     private string BloackagesToolTip(BaseItem baseItem)
     {
+        string builderString = $"Blockages: {newline}";
+        Dictionary<Effects, int> blockages = baseItem.GetAlchemicalEffectBlockages();
 
+        foreach(KeyValuePair<Effects, int> blockage in blockages)
+        {
+            Effects effect = blockage.Key;
+            int effectTier = blockage.Value;
+
+            builderString += $"{effect} - {effectTier}{newline}";
+        }
+        return builderString;
     }
 
     #endregion
