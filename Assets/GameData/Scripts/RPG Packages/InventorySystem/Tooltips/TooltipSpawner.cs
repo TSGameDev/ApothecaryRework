@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TSGameDev.Inventories;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace TSGameDev.UI.Inventories.ToolTips
@@ -15,7 +16,10 @@ namespace TSGameDev.UI.Inventories.ToolTips
         #region Serialized Variables
 
         [Tooltip("The prefab of the tooltip to spawn.")]
-        [SerializeField] GameObject tooltipPrefab = null;
+        [SerializeField] GameObject reagentTooltipPrefab = null;
+
+        [Tooltip("The prefab of the tooltip to spawn.")]
+        [SerializeField] GameObject baseTooltipPrefab = null;
 
         #endregion
 
@@ -72,6 +76,8 @@ namespace TSGameDev.UI.Inventories.ToolTips
         {
             //Cache the canvas
             var parentCanvas = GetComponentInParent<Canvas>();
+            InventorySlotUI hoveredSlot = GetComponent<InventorySlotUI>();
+            InventoryItem hoveredItem = hoveredSlot.GetItem();
 
             //If the tooltip is instaiated but currently can't create a tooltip, destory the tooltip gameobject
             if (tooltip && !CanCreateTooltip())
@@ -82,7 +88,17 @@ namespace TSGameDev.UI.Inventories.ToolTips
             //If the tooltip isn't instaiated but you can create a tooltip, instantiate the tooltip prefab
             if (!tooltip && CanCreateTooltip())
             {
-                tooltip = Instantiate(tooltipPrefab, parentCanvas.transform);
+                ReagentItem hoveredReagent = hoveredItem as ReagentItem;
+                if(hoveredReagent != null)
+                {
+                    tooltip = Instantiate(reagentTooltipPrefab, parentCanvas.transform);
+                }
+
+                BaseItem hoveredBase = hoveredItem as BaseItem;
+                if(hoveredBase != null)
+                {
+                    tooltip = Instantiate(baseTooltipPrefab, parentCanvas.transform);
+                }
             }
 
             //If the tooltip is instantiated, update and position it.

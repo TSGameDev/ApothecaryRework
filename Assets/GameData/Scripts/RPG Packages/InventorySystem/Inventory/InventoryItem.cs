@@ -54,7 +54,7 @@ namespace TSGameDev.Inventories
     /// In practice, you are likely to use a subclass such as `ActionItem` or
     /// `EquipableItem`.
     /// </remarks>
-    public abstract class InventoryItem : SerializedScriptableObject, ISerializationCallbackReceiver
+    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
     {
         #region Serialized Variables
 

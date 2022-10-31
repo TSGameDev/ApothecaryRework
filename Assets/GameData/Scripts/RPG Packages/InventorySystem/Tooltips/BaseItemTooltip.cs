@@ -11,8 +11,11 @@ public class BaseItemTooltip : ItemTooltip
 {
     #region Serialized Variables
 
+    [TabGroup("tab1", "Base Info")]
     [SerializeField] TextMeshProUGUI positiveAlchemicalBonusesTxt;
+    [TabGroup("tab1", "Base Info")]
     [SerializeField] TextMeshProUGUI negativeAlchemicalBonusesTxt;
+    [TabGroup("tab1", "Base Info")]
     [SerializeField] TextMeshProUGUI blockagesTxt;
 
     #endregion
@@ -54,9 +57,12 @@ public class BaseItemTooltip : ItemTooltip
         string builderString = $"Positive Bonuses: {newline}";
         List<BaseAlchemicalEffects> positiveBonuses = baseItem.GetPositiveAlchemicalEffectBonuses();
 
+        if (positiveBonuses == null)
+            return builderString;
+
         foreach(BaseAlchemicalEffects bonus in positiveBonuses)
         {
-            string effectName = Enum.GetName(typeof(BaseAlchemicalEffects), bonus.effect);
+            string effectName = Enum.GetName(typeof(Effects), bonus.effect);
             int effectPercentileBonus = bonus.effectPercentileBonus;
 
             builderString += $"{effectName} - {effectPercentileBonus}{newline}";
@@ -71,9 +77,12 @@ public class BaseItemTooltip : ItemTooltip
         string builderString = $"Negative Bonuses: {newline}";
         List<BaseAlchemicalEffects> negativeBonuses = baseItem.GetNegativeAlchemicalEffectBonuses();
 
-        foreach(BaseAlchemicalEffects bonus in negativeBonuses)
+        if (negativeBonuses == null)
+            return builderString;
+
+        foreach (BaseAlchemicalEffects bonus in negativeBonuses)
         {
-            string effectName = Enum.GetName (typeof(BaseAlchemicalEffects), bonus.effect);
+            string effectName = Enum.GetName(typeof(Effects), bonus.effect);
             int effectPercentileBonus = bonus.effectPercentileBonus;
 
             builderString += $"{effectName} - {effectPercentileBonus}{newline}";
@@ -84,14 +93,17 @@ public class BaseItemTooltip : ItemTooltip
     private string BloackagesToolTip(BaseItem baseItem)
     {
         string builderString = $"Blockages: {newline}";
-        Dictionary<Effects, int> blockages = baseItem.GetAlchemicalEffectBlockages();
+        List<BaseAlchemicalBlockages> blockages = baseItem.GetAlchemicalEffectBlockages();
 
-        foreach(KeyValuePair<Effects, int> blockage in blockages)
+        if (blockages == null)
+            return builderString;
+
+        foreach (BaseAlchemicalBlockages blockage in blockages)
         {
-            Effects effect = blockage.Key;
-            int effectTier = blockage.Value;
+            string effectName = Enum.GetName(typeof(Effects), blockage.effect);
+            int effectTier = blockage.effectTier;
 
-            builderString += $"{effect} - {effectTier}{newline}";
+            builderString += $"{effectName} - {effectTier}{newline}";
         }
         return builderString;
     }

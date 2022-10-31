@@ -181,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa9eb11c5d87ee43aada6c2901bf8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipPrefab: {fileID: 2530461690690390916, guid: 63c7ee18a0e55c042b19fd3dea465824,
+  reagentTooltipPrefab: {fileID: 2530461690690390916, guid: 63c7ee18a0e55c042b19fd3dea465824,
+    type: 3}
+  baseTooltipPrefab: {fileID: 2530461690690390916, guid: 2182fc8723d65aa4bba4d6e5f5d25610,
     type: 3}
 --- !u!1001 &3706138257483889885
 PrefabInstance:

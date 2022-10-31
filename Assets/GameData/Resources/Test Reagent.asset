@@ -24,7 +24,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   itemTier: 3
   itemID: cb328dbe-5cac-4cdd-9b11-cb8577ce53eb
-  displayName: Test 1
+  displayName: Test Reagent
   stackable: 1
   description: A Very Rare item as it is a test item
   pickup: {fileID: 0}

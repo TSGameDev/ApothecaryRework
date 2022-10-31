@@ -69,6 +69,5 @@ namespace TSGameDev.UI.Inventories
         }
 
         #endregion
-
     }
 }

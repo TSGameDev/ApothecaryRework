@@ -1,9 +1,12 @@
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TSGameDev.Inventories
 {
+    [Serializable]
     public struct BaseAlchemicalEffects
     {
         public Effects effect;
@@ -16,6 +19,19 @@ namespace TSGameDev.Inventories
         {
             this.effect = effect;
             this.effectPercentileBonus = effectPercentileBonus;
+        }
+    }
+
+    [Serializable]
+    public struct BaseAlchemicalBlockages
+    {
+        public Effects effect;
+        public int effectTier;
+
+        public BaseAlchemicalBlockages(Effects effect, int effectTier)
+        {
+            this.effect = effect;
+            this.effectTier = effectTier;
         }
     }
 
@@ -32,8 +48,9 @@ namespace TSGameDev.Inventories
         [PropertyTooltip("A list of all the effect this ingredient provides to the potions it creates")]
         [SerializeField] List<BaseAlchemicalEffects> negativeAlchemicalBonuses;
 
-        [PropertyTooltip("A Dictionary of Effects and tiers. The effects of stated tier or lower can't be put on this item, higher tiers of this effect are potent enough to be able to be applied to this item.")]
-        [SerializeField] Dictionary<Effects, int> alchemicalEffectBlockages = new();
+        [TabGroup("Tab1", "Base Information")]
+        [PropertyTooltip("A list of the effects that can't be applied to a potion using this base unless the effect has a higher tier than the tier shown.")]
+        [SerializeField] List<BaseAlchemicalBlockages> alchemicalEffectBlockages;
 
         #endregion
 
@@ -49,7 +66,7 @@ namespace TSGameDev.Inventories
             return negativeAlchemicalBonuses;
         }
 
-        public Dictionary<Effects, int> GetAlchemicalEffectBlockages()
+        public List<BaseAlchemicalBlockages> GetAlchemicalEffectBlockages()
         {
             return alchemicalEffectBlockages;
         }

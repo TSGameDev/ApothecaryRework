@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TSGameDev.Inventories.ToolTips;
+using TSGameDev.Inventories;
 
 namespace TSGameDev.UI.Inventories.ToolTips
 {
