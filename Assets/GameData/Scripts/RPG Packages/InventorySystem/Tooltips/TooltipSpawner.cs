@@ -21,6 +21,9 @@ namespace TSGameDev.UI.Inventories.ToolTips
         [Tooltip("The prefab of the tooltip to spawn.")]
         [SerializeField] GameObject baseTooltipPrefab = null;
 
+        [Tooltip("The prefab of thet tooltip to spawn")]
+        [SerializeField] GameObject potionTooltipPrefab = null;
+
         #endregion
 
         #region Caches
@@ -89,16 +92,13 @@ namespace TSGameDev.UI.Inventories.ToolTips
             if (!tooltip && CanCreateTooltip())
             {
                 ReagentItem hoveredReagent = hoveredItem as ReagentItem;
-                if(hoveredReagent != null)
-                {
-                    tooltip = Instantiate(reagentTooltipPrefab, parentCanvas.transform);
-                }
+                if(hoveredReagent != null) tooltip = Instantiate(reagentTooltipPrefab, parentCanvas.transform);
+
+                PotionItem hoveredPotion = hoveredItem as PotionItem;
+                if (hoveredPotion != null) tooltip = Instantiate(potionTooltipPrefab, parentCanvas.transform);
 
                 BaseItem hoveredBase = hoveredItem as BaseItem;
-                if(hoveredBase != null)
-                {
-                    tooltip = Instantiate(baseTooltipPrefab, parentCanvas.transform);
-                }
+                if(hoveredBase != null) tooltip = Instantiate(baseTooltipPrefab, parentCanvas.transform);
             }
 
             //If the tooltip is instantiated, update and position it.

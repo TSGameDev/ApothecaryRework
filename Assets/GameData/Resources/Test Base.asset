@@ -10,23 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99b87f2812b7bc146b8594dcd5c02322, type: 3}
-  m_Name: New Base Item
+  m_Name: Test Base
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  itemTier: 0
+  itemTier: 3
   itemID: cf423994-13ae-4ae4-b53a-c0d044e6af36
-  displayName: 
+  displayName: Test Base
   stackable: 0
-  description: 
+  description: A very rare item due to its test nature
   pickup: {fileID: 0}
   sellable: 1
   minItemPrice:
     bronze: 0
     silver: 0
-    gold: 0
+    gold: 100
   maxItemPrice:
-    bronze: 0
-    silver: 0
-    gold: 0
-  positiveAlchemicalBonuses: []
-  negativeAlchemicalBonuses: []
+    bronze: 6
+    silver: 90
+    gold: 1000
+  positiveAlchemicalBonuses:
+  - effect: 0
+    effectPercentileBonus: 25
+  - effect: 1
+    effectPercentileBonus: 50
+  negativeAlchemicalBonuses:
+  - effect: 2
+    effectPercentileBonus: 50
+  alchemicalEffectBlockages:
+  - effect: 3
+    effectTier: 4

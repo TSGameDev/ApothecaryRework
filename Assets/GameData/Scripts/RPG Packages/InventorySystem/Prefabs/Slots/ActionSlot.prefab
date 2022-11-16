@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 6679304978608564298}
   - component: {fileID: 6618939113007009549}
   - component: {fileID: 3983537666169782523}
-  - component: {fileID: 3502428573051044641}
   m_Layer: 5
   m_Name: ActionSlot
   m_TagString: Untagged
@@ -170,20 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 7322007884383390646}
   index: 0
---- !u!114 &3502428573051044641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6554522761034231013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa9eb11c5d87ee43aada6c2901bf8cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltipPrefab: {fileID: 2530461690690390916, guid: 63c7ee18a0e55c042b19fd3dea465824,
-    type: 3}
 --- !u!1001 &3706138257483889885
 PrefabInstance:
   m_ObjectHideFlags: 0

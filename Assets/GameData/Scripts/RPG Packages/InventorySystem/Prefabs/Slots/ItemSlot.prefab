@@ -185,6 +185,8 @@ MonoBehaviour:
     type: 3}
   baseTooltipPrefab: {fileID: 2530461690690390916, guid: 2182fc8723d65aa4bba4d6e5f5d25610,
     type: 3}
+  potionTooltipPrefab: {fileID: 2530461690690390916, guid: 4cba0c9d2c7fb414ba86c90be48480e0,
+    type: 3}
 --- !u!1001 &3706138257483889885
 PrefabInstance:
   m_ObjectHideFlags: 0
