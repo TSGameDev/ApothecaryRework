@@ -81,6 +81,7 @@ namespace TSGameDev.Inventories
         public override void Use(GameObject user)
         {
             // Functionality of the potion
+
         }
 
         #endregion
