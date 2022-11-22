@@ -68,19 +68,6 @@ namespace TSGameDev.Inventories
         [PropertyTooltip("the result of this ingredient when process under blender.")]
         [SerializeField] InventoryItem blenderResult;
 
-        [TitleGroup("Tab1/Reagent Information/Juicer Results")]
-        [HorizontalGroup("Tab1/Reagent Information/Juicer Results/Juicer")]
-        [LabelText("Primary Result")]
-        [PreviewField(50, ObjectFieldAlignment.Left)]
-        [PropertyTooltip("The primary result of this ingredient when processed under juicer.")]
-        [SerializeField] InventoryItem juicerResult;
-
-        [HorizontalGroup("Tab1/Reagent Information/Juicer Results/Juicer")]
-        [LabelText("Secondry Result")]
-        [PreviewField(50, ObjectFieldAlignment.Center)]
-        [PropertyTooltip("The secondary result of this ingredient when processed under juicer.")]
-        [SerializeField] InventoryItem juicerResult2;
-
         [TitleGroup("Tab1/Reagent Information/Chopping Results")]
         [HorizontalGroup("Tab1/Reagent Information/Chopping Results/Chopping")]
         [LabelText("Primary Result")]
@@ -133,16 +120,6 @@ namespace TSGameDev.Inventories
         public InventoryItem GetBlendingResult()
         {
             return blenderResult;
-        }
-
-        public InventoryItem GetJuicerPrimaryResult()
-        {
-            return juicerResult;
-        }
-
-        public InventoryItem GetJuicerSecondaryResult()
-        {
-            return juicerResult2;
         }
 
         public InventoryItem GetChoppingPrimaryResult()

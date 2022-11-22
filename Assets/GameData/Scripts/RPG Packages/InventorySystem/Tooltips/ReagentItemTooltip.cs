@@ -65,7 +65,6 @@ public class ReagentItemTooltip : ItemTooltip
         knownProcessBuilder = $"Known Processes: {newLine}" +
             $"{MortarProcessingSetup(reagentItem)}" +
             $"{BlenderProcessingSetup(reagentItem)}" +
-            $"{JuicerProcessingSetup(reagentItem)}" +
             $"{ChoppingProcessingSetup(reagentItem)}" +
             $"{BunsenProcessingSetup(reagentItem)}";
 
@@ -102,23 +101,7 @@ public class ReagentItemTooltip : ItemTooltip
         }
         return stringBuilder;
     }
-
-    private string JuicerProcessingSetup(ReagentItem reagentItem)
-    {
-        string newLine = Environment.NewLine;
-        string stringBuilder = "";
-        InventoryItem JuicerResult = reagentItem.GetJuicerPrimaryResult();
-        InventoryItem JuicerSecResult = reagentItem.GetJuicerSecondaryResult();
-        if (JuicerResult != null && JuicerSecResult == null)
-        {
-            stringBuilder += $"Juicer: {JuicerResult.GetDisplayName()}{newLine}";
-        }
-        else if(JuicerResult != null && JuicerSecResult != null)
-        {
-            stringBuilder += $"Juicer: {JuicerResult.GetDisplayName()}, {JuicerSecResult.GetDisplayName()}{newLine}";
-        }
-        return stringBuilder;
-    }
+    
 
     private string ChoppingProcessingSetup(ReagentItem reagentItem)
     {

@@ -28,6 +28,9 @@ MonoBehaviour:
     bronze: 6
     silver: 90
     gold: 1000
+  imbueResult:
+    reagentItem: {fileID: 0}
+    baseItem: {fileID: 0}
   positiveAlchemicalBonuses:
   - effect: 0
     effectPercentileBonus: 25

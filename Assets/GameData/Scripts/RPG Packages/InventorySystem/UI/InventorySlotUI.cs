@@ -15,8 +15,6 @@ namespace TSGameDev.UI.Inventories
 
         //Reference to the child InventoryItemIcon that is set from within the prefab.
         [SerializeField] InventoryItemIcon icon = null;
-        // Bool for if the inventory Slot is used for crafting
-        [SerializeField] bool isCraftingSlot = false;
 
         #endregion
 
@@ -26,8 +24,6 @@ namespace TSGameDev.UI.Inventories
         int index;
         //Reference to the inventory this UI represents.
         Inventory inventory;
-        // Reference to the item stored in this slot. Used for crafting mech.
-        InventorySlot storedItem;
 
         #endregion
 
@@ -60,8 +56,6 @@ namespace TSGameDev.UI.Inventories
         /// </returns>
         public int MaxAcceptable(InventoryItem item)
         {
-            if (isCraftingSlot) return int.MaxValue;
-
             if (inventory.HasSpaceFor(item))
             {
                 return int.MaxValue;
@@ -80,13 +74,6 @@ namespace TSGameDev.UI.Inventories
         /// </param>
         public void AddItems(InventoryItem item, int number)
         {
-            if (isCraftingSlot)
-            {
-                storedItem.item = item;
-                storedItem.number = number;
-                return;
-            }
-
             inventory.AddItemToSlot(index, item, number);
         }
 
@@ -98,8 +85,6 @@ namespace TSGameDev.UI.Inventories
         /// </returns>
         public InventoryItem GetItem()
         {
-            if (isCraftingSlot) return storedItem.item;
-
             return inventory.GetItemInSlot(index);
         }
 
@@ -111,7 +96,6 @@ namespace TSGameDev.UI.Inventories
         /// </returns>
         public int GetNumber()
         {
-            if (isCraftingSlot) return storedItem.number;
             return inventory.GetNumberInSlot(index);
         }
 
@@ -123,13 +107,6 @@ namespace TSGameDev.UI.Inventories
         /// </param>
         public void RemoveItems(int number)
         {
-            if(isCraftingSlot)
-            {
-                storedItem.item = null;
-                storedItem.number = 0;
-                return;
-            }
-
             inventory.RemoveFromSlot(index, number);
         }
 

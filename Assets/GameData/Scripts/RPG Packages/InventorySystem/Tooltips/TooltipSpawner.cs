@@ -1,4 +1,5 @@
 ﻿using TSGameDev.Inventories;
+using TSGameDev.UI.Inventories.Crafting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -79,8 +80,13 @@ namespace TSGameDev.UI.Inventories.ToolTips
         {
             //Cache the canvas
             var parentCanvas = GetComponentInParent<Canvas>();
-            InventorySlotUI hoveredSlot = GetComponent<InventorySlotUI>();
-            InventoryItem hoveredItem = hoveredSlot.GetItem();
+            InventoryItem hoveredItem = null;
+            
+            if (TryGetComponent<InventorySlotUI>(out var hoveredInventorySlot)) hoveredItem = hoveredInventorySlot.GetItem();
+
+            if (TryGetComponent<CraftingSlotUI>(out var hoveredCraftingSlot)) hoveredItem = hoveredCraftingSlot.GetItem();
+
+            if (TryGetComponent<CraftingResultSlotUI>(out var hoveredCraftingResultSlotUI)) hoveredItem = hoveredCraftingResultSlotUI.GetItem();
 
             //If the tooltip is instaiated but currently can't create a tooltip, destory the tooltip gameobject
             if (tooltip && !CanCreateTooltip())

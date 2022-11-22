@@ -12,15 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fa134b6b25d9c4a9e5f477dfd17b4d, type: 3}
   m_Name: Test Reagent
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
   icon: {fileID: 0}
   itemTier: 3
   itemID: cb328dbe-5cac-4cdd-9b11-cb8577ce53eb
@@ -45,12 +36,11 @@ MonoBehaviour:
   mortarAndPestleResult: {fileID: 11400000, guid: 12941443e2e44454184174a433fca89c,
     type: 2}
   mortarAndPestleResult2: {fileID: 0}
-  blenderResult: {fileID: 0}
-  juicerResult: {fileID: 0}
-  juicerResult2: {fileID: 0}
+  blenderResult: {fileID: 11400000, guid: 5a5bd3ca16028fc4eab8a0992a237508, type: 2}
+  imbueResult: {fileID: 0}
   choppingResult: {fileID: 11400000, guid: 389f2651df09d524bbd91c590334b79f, type: 2}
   choppingResult2: {fileID: 0}
   bunsenburnerResults:
-  - minTemp: 100
-    maxTemp: 257
+  - minTemp: 75
+    maxTemp: 267
     result: {fileID: 11400000, guid: 12941443e2e44454184174a433fca89c, type: 2}

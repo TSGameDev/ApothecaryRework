@@ -68,6 +68,22 @@ namespace TSGameDev.UI.Inventories
             }
         }
 
+        public void SetNumber(int number)
+        {
+            if (itemNumber)
+            {
+                if (number <= 1)
+                {
+                    textContainer.SetActive(false);
+                }
+                else
+                {
+                    textContainer.SetActive(true);
+                    itemNumber.text = number.ToString();
+                }
+            }
+        }
+
         #endregion
     }
 }

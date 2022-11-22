@@ -112,7 +112,17 @@ namespace TSGameDev.Inventories
 
         #endregion
 
-        static Dictionary<string, InventoryItem> itemLookupCache;
+        #region Static Private Variables
+
+        public static Dictionary<string, PotionItem> potionLookupCache;
+        public static Dictionary<string, ReagentItem> reagentLookupCache;
+        public static Dictionary<string, BaseItem> baseLookupCache;
+
+        static readonly string potionResourcePath = "Potions";
+        static readonly string reagentResourcePath = "Reagents";
+        static readonly string baseResourcePath = "Bases";
+
+        #endregion
 
         #region Public Functions
 
@@ -127,26 +137,23 @@ namespace TSGameDev.Inventories
         /// </returns>
         public static InventoryItem GetFromID(string itemID)
         {
-            if (itemLookupCache == null)
-            {
-                itemLookupCache = new Dictionary<string, InventoryItem>();
-                var itemList = Resources.LoadAll<InventoryItem>("");
-                foreach (var item in itemList)
-                {
-                    if (itemLookupCache.ContainsKey(item.itemID))
-                    {
-                        Debug.LogError(string.Format("Looks like there's a duplicate GameDevTV.UI.InventorySystem ID for objects: {0} and {1}", itemLookupCache[item.itemID], item));
-                        continue;
-                    }
+            if (potionLookupCache == null)
+                CreateItemCaches();
 
-                    itemLookupCache[item.itemID] = item;
-                }
-            }
-
-            if (itemID == null || !itemLookupCache.ContainsKey(itemID)) return null;
-            return itemLookupCache[itemID];
+            if (itemID == null || !potionLookupCache.ContainsKey(itemID)) return null;
+            return potionLookupCache[itemID];
         }
         
+        /// <summary>
+        /// Static Function used to create the global item caches for the crafting system if the caches have not yet been created via GetFromID function
+        /// </summary>
+        public static void CreateItemCaches()
+        {
+            CreatePotionCache();
+            CreateReagentCache();
+            CreateBaseCache();
+        }
+
         /// <summary>
         /// Spawn the pickup gameobject into the world.
         /// </summary>
@@ -266,6 +273,54 @@ namespace TSGameDev.Inventories
         #endregion
 
         #region Private Functions
+
+        // Static function that creates the global cache for potion items.
+        static void CreatePotionCache()
+        {
+            potionLookupCache = new();
+            var itemList = Resources.LoadAll<PotionItem>(potionResourcePath);
+            foreach (var item in itemList)
+            {
+                if (potionLookupCache.ContainsKey(item.itemID))
+                {
+                    Debug.LogError($"Duplicate Inventory Item ID's for Objects: {potionLookupCache[item.itemID]} and {item}");
+                    continue;
+                }
+                potionLookupCache[item.itemID] = item;
+            }
+        }
+
+        // Static function that creates the global cache for reagent items.
+        static void CreateReagentCache()
+        {
+            reagentLookupCache = new();
+            var itemList = Resources.LoadAll<ReagentItem>(reagentResourcePath);
+            foreach(var item in itemList)
+            {
+                if(reagentLookupCache.ContainsKey(item.itemID))
+                {
+                    Debug.LogError($"Duplicate Inventory Item ID's for Objects: {potionLookupCache[item.itemID]} and {item}");
+                    continue;
+                }
+                reagentLookupCache[item.itemID] = item;
+            }
+        }
+
+        // Static function that creates the global cache for base items.
+        static void CreateBaseCache()
+        {
+            baseLookupCache = new();
+            var itemList = Resources.LoadAll<BaseItem>(baseResourcePath);
+            foreach (var item in itemList)
+            {
+                if (baseLookupCache.ContainsKey(item.itemID))
+                {
+                    Debug.LogError($"Duplicate Inventory Item ID's for Objects: {baseLookupCache[item.itemID]} and {item}");
+                    continue;
+                }
+                baseLookupCache[item.itemID] = item;
+            }
+        }
 
         /// <summary>
         /// Function that is called when variable changes and the script is Serialized by Unity. Checks if the ID is unique and if it needs to generate a new guild ID

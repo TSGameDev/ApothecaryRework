@@ -17,6 +17,8 @@ public class BaseItemTooltip : ItemTooltip
     [SerializeField] TextMeshProUGUI negativeAlchemicalBonusesTxt;
     [TabGroup("tab1", "Base Info")]
     [SerializeField] TextMeshProUGUI blockagesTxt;
+    [TabGroup("tab1", "Base Info")]
+    [SerializeField] TextMeshProUGUI imbueTxt;
 
     #endregion
 
@@ -50,6 +52,15 @@ public class BaseItemTooltip : ItemTooltip
         positiveAlchemicalBonusesTxt.text = PositiveBonusesToolTip(baseItem);
         negativeAlchemicalBonusesTxt.text = NegativeBonusesTooltip(baseItem);
         blockagesTxt.text = BloackagesToolTip(baseItem);
+        imbueTxt.text = JuicerProcessingSetup(baseItem);
+    }
+
+    private string JuicerProcessingSetup(BaseItem baseItem)
+    {
+        string stringBuilder = "";
+        ImbueProcess ImbueResult = baseItem.GetImbueResult();
+        stringBuilder += $"{ImbueResult.baseItem.GetDisplayName()} + {ImbueResult.reagentItem.GetDisplayName()} = { baseItem.GetDisplayName() }";
+        return stringBuilder;
     }
 
     private string PositiveBonusesToolTip(BaseItem baseItem)
