@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Test Base 2
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  itemTier: 0
+  itemTier: 3
   itemID: bece6dcf-f87a-42c4-8cee-c40ef642193a
-  displayName: 
+  displayName: Test Base 2
   stackable: 0
-  description: 
+  description: A second base test item
   pickup: {fileID: 0}
   sellable: 1
   minItemPrice:

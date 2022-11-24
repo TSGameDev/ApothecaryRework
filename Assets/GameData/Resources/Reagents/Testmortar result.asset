@@ -12,18 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fa134b6b25d9c4a9e5f477dfd17b4d, type: 3}
   m_Name: Testmortar result
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
   icon: {fileID: 0}
   itemTier: 0
-  itemID: 2bad430c-4ebf-4591-93ad-d71740b8d99f
+  itemID: 30b74b04-2706-4f79-b1cd-6e154f445e92
   displayName: Mush
   stackable: 0
   description: A ball of useless mush
@@ -37,10 +28,10 @@ MonoBehaviour:
     bronze: 3
     silver: 0
     gold: 0
+  alchemicalEffects: []
   mortarAndPestleResult: {fileID: 0}
   mortarAndPestleResult2: {fileID: 0}
   blenderResult: {fileID: 0}
-  juicerResult: {fileID: 0}
-  juicerResult2: {fileID: 0}
   choppingResult: {fileID: 0}
   choppingResult2: {fileID: 0}
+  bunsenburnerResults: []

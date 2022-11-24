@@ -52,13 +52,17 @@ public class BaseItemTooltip : ItemTooltip
         positiveAlchemicalBonusesTxt.text = PositiveBonusesToolTip(baseItem);
         negativeAlchemicalBonusesTxt.text = NegativeBonusesTooltip(baseItem);
         blockagesTxt.text = BloackagesToolTip(baseItem);
-        imbueTxt.text = JuicerProcessingSetup(baseItem);
+        imbueTxt.text = ImbueProcessingSetup(baseItem);
     }
 
-    private string JuicerProcessingSetup(BaseItem baseItem)
+    private string ImbueProcessingSetup(BaseItem baseItem)
     {
         string stringBuilder = "";
         ImbueProcess ImbueResult = baseItem.GetImbueResult();
+
+        if (ImbueResult.baseItem == null || ImbueResult.reagentItem == null)
+            return "";
+
         stringBuilder += $"{ImbueResult.baseItem.GetDisplayName()} + {ImbueResult.reagentItem.GetDisplayName()} = { baseItem.GetDisplayName() }";
         return stringBuilder;
     }

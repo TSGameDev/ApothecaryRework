@@ -23,6 +23,7 @@ namespace TSGameDev.Inventories.Crafting
             {
                 if(Currenttemp > process.minTemp && Currenttemp < process.maxTemp)
                 {
+                    craftSlot.RemoveItems(1);
                     resultSlot.AddItem(process.result, Random.Range(1, 5));
                 }
             }
