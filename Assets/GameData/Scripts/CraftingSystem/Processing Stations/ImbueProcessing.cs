@@ -19,11 +19,21 @@ namespace TSGameDev.Inventories.Crafting
             if (InventoryItem.baseLookupCache == null)
                 InventoryItem.CreateItemCaches();
 
+            ImbueProcess craftingRecipe = new(baseItem, reagentItem);
+
             foreach (KeyValuePair<string, BaseItem> KV in InventoryItem.baseLookupCache)
             {
+                bool baseMatch = false, reagentMatch = false;
                 BaseItem currentBase = KV.Value;
                 ImbueProcess recipe = currentBase.GetImbueResult();
-                if (recipe.baseItem == baseItem && recipe.reagentItem == reagentItem)
+
+                if (craftingRecipe.baseItem == recipe.baseItem)
+                    baseMatch = true;
+
+                if (craftingRecipe.reagentItem == recipe.reagentItem)
+                    reagentMatch = true;
+
+                if (baseMatch && reagentMatch)
                 {
                     baseSlot.RemoveItems(1);
                     reagentSlot.RemoveItems(1);

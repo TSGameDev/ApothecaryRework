@@ -2,9 +2,25 @@ using UnityEngine;
 using TSGameDev.Inventories.Actions;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using System;
 
 namespace TSGameDev.Inventories
 {
+    [Serializable]
+    public struct PotionRecipe
+    {
+        public BaseItem baseItem;
+        public ReagentItem reagentItemPrimary;
+        public ReagentItem reagentItemSecondary;
+
+        public PotionRecipe(BaseItem baseItem, ReagentItem reagentItemPrimary, ReagentItem reagentItemSecondary)
+        {
+            this.baseItem = baseItem;
+            this.reagentItemPrimary = reagentItemPrimary;
+            this.reagentItemSecondary = reagentItemSecondary;
+        }
+    }
+
     [CreateAssetMenu(menuName = "TSGameDev/Inventory/New Potion Item")]
     public class PotionItem : ActionItem
     {
@@ -25,6 +41,10 @@ namespace TSGameDev.Inventories
         #endregion
 
         #region Serialised Potion Variables
+
+        [TabGroup("Tab1", "Action Information")]
+        [PropertyTooltip("A description of the active effect of the potion")]
+        [SerializeField] PotionRecipe potionRecipe;
 
         [TabGroup("Tab1", "Action Information")]
         [PropertyTooltip("A description of the active effect of the potion")]
@@ -61,6 +81,10 @@ namespace TSGameDev.Inventories
             return alchemicalEffectBlockages;
         }
 
+        #endregion
+
+        #region Potion Functions
+
         /// <summary>
         /// Getter for the description of the active effect of the potion.
         /// </summary>
@@ -68,6 +92,11 @@ namespace TSGameDev.Inventories
         public string GetPotionActiveEffect()
         {
             return potionActiveEffectDescription;
+        }
+
+        public PotionRecipe GetPotionRecipe()
+        {
+            return potionRecipe;
         }
 
         #endregion

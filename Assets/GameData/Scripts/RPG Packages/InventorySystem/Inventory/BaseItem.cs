@@ -41,7 +41,7 @@ namespace TSGameDev.Inventories
         public ReagentItem reagentItem;
         public BaseItem baseItem;
 
-        public ImbueProcess(ReagentItem reagentItem, BaseItem baseItem, BaseItem resultItem)
+        public ImbueProcess(BaseItem baseItem, ReagentItem reagentItem)
         {
             this.reagentItem = reagentItem;
             this.baseItem = baseItem;
