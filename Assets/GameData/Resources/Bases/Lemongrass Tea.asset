@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b87f2812b7bc146b8594dcd5c02322, type: 3}
+  m_Name: Lemongrass Tea
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: ff53cee55a695a5459125b918e2d5b15, type: 3}
+  itemTier: 0
+  itemID: 941b4302-d270-4c03-ac07-8f0c9d0fe392
+  displayName: Lemongrass Tea
+  stackable: 1
+  description: A very minty tea with healing quality from perfectly processed lemon
+    grass
+  pickup: {fileID: 0}
+  sellable: 1
+  minItemPrice:
+    bronze: 1
+    silver: 0
+    gold: 0
+  maxItemPrice:
+    bronze: 3
+    silver: 0
+    gold: 0
+  imbueResult:
+    reagentItem: {fileID: 11400000, guid: 498e92fda3044104b8e9443506f730d9, type: 2}
+    baseItem: {fileID: 11400000, guid: e09b61e17e130184486d117d84c23f71, type: 2}
+  positiveAlchemicalBonuses:
+  - effect: 0
+    effectPercentileBonus: 5
+  - effect: 1
+    effectPercentileBonus: 15
+  negativeAlchemicalBonuses:
+  - effect: 2
+    effectPercentileBonus: 5
+  alchemicalEffectBlockages:
+  - effect: 3
+    effectTier: 2

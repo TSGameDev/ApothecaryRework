@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b87f2812b7bc146b8594dcd5c02322, type: 3}
+  m_Name: Nightshade Tea
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 6f68524c69301e34bbd9368a11dc5c14, type: 3}
+  itemTier: 0
+  itemID: base_002
+  displayName: Nightshade Tea
+  stackable: 1
+  description: A vital of lightly purple diluted nightshade oil.
+  pickup: {fileID: 0}
+  sellable: 1
+  minItemPrice:
+    bronze: 3
+    silver: 0
+    gold: 0
+  maxItemPrice:
+    bronze: 5
+    silver: 0
+    gold: 0
+  imbueResult:
+    reagentItem: {fileID: 0}
+    baseItem: {fileID: 11400000, guid: e09b61e17e130184486d117d84c23f71, type: 2}
+  positiveAlchemicalBonuses:
+  - effect: 2
+    effectPercentileBonus: 5
+  negativeAlchemicalBonuses:
+  - effect: 1
+    effectPercentileBonus: 5
+  alchemicalEffectBlockages:
+  - effect: 0
+    effectTier: 2

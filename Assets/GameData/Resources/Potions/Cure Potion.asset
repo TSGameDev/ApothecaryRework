@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0536e12ea706b584da3792db0fa57f4a, type: 3}
+  m_Name: Cure Potion
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8f202f5b9baf0c5488c70ce923a039de, type: 3}
+  itemTier: 0
+  itemID: 8bc7fc67-c566-45e5-beb1-a627ed85b312
+  displayName: Cure Potion
+  stackable: 0
+  description: A small potion of mint green created from lemongrass.
+  pickup: {fileID: 0}
+  sellable: 1
+  minItemPrice:
+    bronze: 0
+    silver: 0
+    gold: 0
+  maxItemPrice:
+    bronze: 0
+    silver: 0
+    gold: 0
+  consumable: 1
+  positiveAlchemicalBonuses:
+  - effect: 0
+    effectPercentileBonus: 5
+  - effect: 1
+    effectPercentileBonus: 15
+  negativeAlchemicalBonuses:
+  - effect: 2
+    effectPercentileBonus: 5
+  alchemicalEffectBlockages:
+  - effect: 3
+    effectTier: 2
+  potionRecipe:
+    baseItem: {fileID: 11400000, guid: 4fb5fd9e33ff58248917d88026ed8a88, type: 2}
+    reagentItemPrimary: {fileID: 11400000, guid: 498e92fda3044104b8e9443506f730d9,
+      type: 2}
+    reagentItemSecondary: {fileID: 11400000, guid: 498e92fda3044104b8e9443506f730d9,
+      type: 2}
+  potionActiveEffectDescription: Cures low tire poisons and curse effects.
