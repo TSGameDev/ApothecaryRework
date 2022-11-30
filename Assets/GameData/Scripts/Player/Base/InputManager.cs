@@ -102,7 +102,7 @@ namespace TSGameDev.Controls
 
             #region Gameplay Controls
 
-            playerControls.Game.Interaction.performed += ctx => playerConnector.playerInteraction();
+            playerControls.Game.Interaction.performed += ctx => player.RadialInteract();
 
             #endregion
 

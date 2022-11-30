@@ -3,23 +3,12 @@ using UnityEngine;
 
 namespace TSGameDev.Inventories.Crafting
 {
-    public class CraftingStationTrigger : MonoBehaviour
+    public class CraftingStationTrigger : MonoBehaviour, IInteractable
     {
         [SerializeField] PlayerConnector playerConnector;
         [SerializeField] GameObject craftingStation;
 
-        private void OpenCraftingStation()
-        {
-            craftingStation.SetActive(!craftingStation.activeSelf);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                playerConnector.playerInteraction = OpenCraftingStation;
-            }
-        }
+        public void OnInteract() => craftingStation.SetActive(!craftingStation.activeSelf);
     }
 }
 

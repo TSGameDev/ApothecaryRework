@@ -29,7 +29,7 @@ MonoBehaviour:
     silver: 0
     gold: 0
   imbueResult:
-    reagentItem: {fileID: 0}
+    reagentItem: {fileID: 11400000, guid: 060da67ba8e923a4085dcf2bd35c38eb, type: 2}
     baseItem: {fileID: 11400000, guid: e09b61e17e130184486d117d84c23f71, type: 2}
   positiveAlchemicalBonuses:
   - effect: 2

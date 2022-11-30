@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using TSGameDev.Controls.PlayerStates;
+using System.Collections.Generic;
 
 namespace TSGameDev.Controls.MainPlayer
 {
@@ -26,6 +27,12 @@ namespace TSGameDev.Controls.MainPlayer
         #region Anim Keys
 
         public readonly int animSpeed = Animator.StringToHash("Speed");
+
+        #endregion
+
+        #region Serialized Variables
+
+        [SerializeField] float interactRadius;
 
         #endregion
 
@@ -71,7 +78,18 @@ namespace TSGameDev.Controls.MainPlayer
 
         #region Public Functions
 
-
+        public void RadialInteract()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, interactRadius);
+            foreach(Collider obj in colliders)
+            {
+                if(obj.TryGetComponent<IInteractable>(out var interactableObj))
+                {
+                    interactableObj.OnInteract();
+                    return;
+                }
+            }
+        }
 
         #endregion
 

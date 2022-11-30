@@ -6,7 +6,7 @@ using System;
 
 namespace TSGameDev.Inventories.Pickups
 {
-    public class PickupMultiSpawner : MonoBehaviour, ISaveable
+    public class PickupMultiSpawner : MonoBehaviour, ISaveable, IInteractable
     {
         #region Serialized Variables
 
@@ -77,6 +77,18 @@ namespace TSGameDev.Inventories.Pickups
             FunctionTimer.Create(SpawnPickup, respawnTime, spawnerID);
         }
 
+        public void OnInteract()
+        {
+            if (GetPickup())
+            {
+                Pickup pickup = GetPickup();
+                if (pickup.CanBePickedUp())
+                {
+                    pickup.PickupItem();
+                }
+            }
+        }
+
         #endregion
 
         #region Private Functions
@@ -99,24 +111,6 @@ namespace TSGameDev.Inventories.Pickups
             if (GetPickup())
             {
                 Destroy(GetPickup().gameObject);
-            }
-        }
-
-        /// <summary>
-        /// Trigger function that is called when anything with a collider enters the trigger volume on the spawner. Used for when the player enters the range of the spawner to where the player can interact to pickup the item.
-        /// </summary>
-        /// <param name="other">
-        /// The collider of the other object that has entered the trigger volume. In this case only useful if the collider is the player.
-        /// </param>
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Player") && GetPickup())
-            {
-                Pickup pickup = GetPickup();
-                if (pickup.CanBePickedUp())
-                {
-                    playerConnector.playerInteraction = pickup.PickupItem;
-                }
             }
         }
 

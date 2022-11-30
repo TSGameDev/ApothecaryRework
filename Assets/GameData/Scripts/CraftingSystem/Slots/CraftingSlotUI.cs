@@ -52,7 +52,7 @@ namespace TSGameDev.UI.Inventories.Crafting
 
         public int MaxAcceptable(InventoryItem item)
         {
-            return int.MaxValue;
+            return 1;
         }
 
         public void RemoveItems(int number)

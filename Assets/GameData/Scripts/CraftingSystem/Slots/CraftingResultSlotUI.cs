@@ -51,7 +51,8 @@ namespace TSGameDev.UI.Inventories.Crafting
                 storedItem.number -= number;
                 icon.SetNumber(storedItem.number);
             }
-            else
+
+            if(storedItem.number <= 1)
             {
                 storedItem.item = null;
                 storedItem.number = 0;
