@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using TSGameDev.SavingSystem;
+using System.Collections.Generic;
 
 namespace TSGameDev.Inventories
 {
@@ -46,6 +47,8 @@ namespace TSGameDev.Inventories
         #endregion
 
         #region Public Function
+
+        public InventorySlot[] GetInventory() => slots;
 
         /// <summary>
         /// Could this item fit anywhere in the inventory?
@@ -165,6 +168,26 @@ namespace TSGameDev.Inventories
                 InventoryUpdated();
             }
             return true;
+        }
+
+        /// <summary>
+        /// Loops through the inventory for mathching item elements and attempts to remove the amount from that element. Will return fail if a single group can't remove the specified amount.
+        /// AkA doesn't support removing items from multiple elements in the inventory so its best to keep items in single groups.
+        /// </summary>
+        /// <param name="item">The item you wish to remove</param>
+        /// <param name="number">The amount of the item you wish to remove.</param>
+        /// <returns>Returns bool for a successful or failed attempt. True is successul, false is a failure. Can fail if first element doesn't have enough items.</returns>
+        public bool RemoveItem(InventoryItem item, int number)
+        {
+            for(int i = 0; i <= slots.Length - 1; i++)
+            {
+                if (slots[i].item == item)
+                {
+                    if (slots[i].number >= number)
+                        RemoveFromSlot(i, number);
+                }
+            }
+            return false;
         }
 
         #endregion
